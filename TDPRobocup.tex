@@ -42,7 +42,7 @@
 %%%  ABSTRACT  %%%
 %%%%%%%%%%%%%
 \begin{abstract}
-This robot is based on the ViRbot architecture, implemented by several modules that perform different tasks, using the ROS platform, together with a cross-platform system called Blackboard developed by us. This year, several improvements in hardware and software of Robot Justina has been made. Currently, our research is mainly focused on task planning using different approaches and the development of a framework to test and debug the execution of the plans.
+This robot is based on the ViRBot architecture, implemented by several modules that perform different tasks, using the ROS platform, together with a cross-platform system called Blackboard developed by us. This year, several improvements in hardware and software of Robot Justina has been made. Currently, our research is mainly focused on task planning using different approaches and the development of a framework to test and debug the execution of the plans.
 \end{abstract}
 
 %%%%%%%%%%%%%%%
@@ -51,9 +51,9 @@ This robot is based on the ViRbot architecture, implemented by several modules t
 
 \section{Introduction}
 
-The service robots are hardware and software systems that can assist humans to perform daily tasks in complex environments. To achieve this, a service robot has to be capable of understanding commands from humans, avoiding static and dynamic obstacles while navigating in known and unknown environments, recognising and manipulating objects and performing several other tasks that a person might request. This paper describes the autonomous service robot Justina and the research of the Team Pumas, which has been participating in RoboCup@Home league since 2007. It is organised as follows:
+The service robots are hardware and software systems that can assist humans to perform daily tasks in complex environments. To achieve this, a service robot has to be capable of understanding commands from humans, avoiding static and dynamic obstacles while navigating in known and unknown environments, recognizing and manipulating objects and performing several other tasks that a person might request. This paper describes the autonomous service robot Justina and the research of the Team Pumas, which has been participating in RoboCup@Home league since 2007. It is organized as follows:
 
-In section \ref{sec:background} the ViRbot architecture is described as the platform for the robot software system. Section \ref{sec:Justina} enumerates the hardware and software components of robot Justina, and the functionality of each of them is described. Section \ref{sec:CurrentResearch} is an abstract of the latest research developed in our laboratory in order to improve the robot's performance and finally, in section \ref{sec:conclusions}, conclusions and future work are given.
+In section \ref{sec:background} the ViRBot architecture is described as the platform for the robot software system. Section \ref{sec:Justina} enumerates the hardware and software components of robot Justina, and the functionality of each of them is described. Section \ref{sec:CurrentResearch} is an abstract of the latest research developed in our laboratory in order to improve the robot's performance and finally, in section \ref{sec:conclusions}, conclusions and future work are given.
 
 %%%%%%%%%%%%%%%%%%
 %%% BACKGROUND %%%
@@ -61,9 +61,9 @@ In section \ref{sec:background} the ViRbot architecture is described as the plat
 
 \section{Background: Platform and Architecture}\label{sec:background}
 
-This robot is based on the ViRbot architecture for autonomous mobile robot operation \cite{virbot}, which provides a platform for the design and development of software for general purpose service robots. 
+This robot is based on the ViRBot architecture for autonomous mobile robot operation \cite{virbot}, which provides a platform for the design and development of software for general purpose service robots. 
 
-The ViRbot architecture defines a human-robot interaction interface made of three main layers (see figure \ref{fig:virbot}):
+The ViRBot architecture defines a human-robot interaction interface made of three main layers (see figure \ref{fig:virbot}):
 
 \begin{itemize}
 	\item \textbf{Input layer:} Includes all algorithms related to the acquisition of data from the environment. 
@@ -78,11 +78,11 @@ The ViRbot architecture defines a human-robot interaction interface made of thre
 	\label{fig:virbot}
 \end{figure}
 
-The ViRbot architecture is implemented in our robots through several modules that perform well defined tasks, with a high level of interaction between them. The principal framework used for interaction is ROS, where a Module is represented by one or several ROS's nodes.
+The ViRBot architecture is implemented in our robots through several modules that perform well defined tasks, with a high level of interaction between them. The principal framework used for interaction is ROS, where a Module is represented by one or several ROS' nodes.
 
-Also, we make extensive use of our self-made Framework for modules interaction called Blackboard (BB). In BB, the information exchange is made through a central module which supports shared variables, publisher/subscriber pattern, and message passing. BB was developed mainly in C\# and the .NET framework, with APIs to build BB modules for C\#, C++ and Python 2.7. It runs on Windows and Unix-based systems (with the help of Mono, an open source implementation of Microsoft's .NET framework). Currently, we had tested BB modules running on Windows, Ubuntu, MacOS, Android and Rasbian
+Also, we make extensive use of our self-made Framework for modules interaction called Blackboard (BB). In BB, the information exchange is made through a central module which supports shared variables, publisher/subscriber pattern, and message passing. BB was developed mainly in C\# and the .NET framework, with APIs to build BB modules for C\#, C++ and Python 2.7. It runs on Windows and Unix-based systems (with the help of Mono, an open source implementation of Microsoft's .NET framework). Currently, we had tested BB modules running on Windows, Ubuntu, Mac-OS, Android and Raspbian
 
-BB's commands and shared variables have a certain equivalence to ROS's services and topics respectively. Integration between ROS nodes and BB modules has been accomplished through the implementation of the BlackBoard Bridge module, which is a ROS node written in C++ with the BB Module API.
+BB's commands and shared variables have a certain equivalence to ROS' services and topics respectively. Integration between ROS nodes and BB modules has been accomplished through the implementation of the Blackboard Bridge module, which is a ROS node written in C++ with the BB Module API.
 
 %%%%%%%%%%%%%%
 %%%%	JUSTINA %%%%
@@ -131,8 +131,8 @@ Robot Justina uses two computers: one running Ubuntu 14.04 and one running Windo
 	\item[Person Finder] Multiple face detection using a Haar cascades like algorithm. Face recognition and the online training is performed using 2D and 3D data from the Kinect sensor. 
 	\item[Speech Recognition] Throws hypothesis (text strings) of recognized voice with a confidence ranking using Microsoft SAPI 5.3 \cite{SAPI} (commercial software).
 	\item[Speech Generator] Voice synthesizer using Microsoft SAPI 5.3 \cite{SAPI} with the Loquendo Susan voice (commercial software).
-	\item[Cartographer] Map building and localisation based on GMapping node.
-	\item[Leg Finder] Legs of pedestrians in a scene are detected and localised using the laser readings.  
+	\item[Cartographer] Map building and localization based on GMapping node.
+	\item[Leg Finder] Legs of pedestrians in a scene are detected and localized using the laser readings.  
 \end{description}
 
 %%%%%%%%%%%%%%%%%%%
@@ -145,7 +145,7 @@ Robot Justina uses two computers: one running Ubuntu 14.04 and one running Windo
 \subsection{Surface reconstruction on virtual environments}\label{subsec:SurfRecon}
 This research has as main purpose to build a 3D representation of an environment, in which a service robot can interact, using the data obtained by a wide variety of sensors.
 
-Particularly, the data that we use in our experiments are point clouds sets. The capture of this data is performed by the Kinect sensor of robot Justina. To align several captures of point clouds of a scene, an implementation of the ICP (Iterative Closest Point) algorithm is used. Also, a sampling step is implemented using Vector Quantization \cite{linde1980algorithm}. The virtual environment builded can ve visualised using the simulator described in subsection \ref{subsec:Simulator} . 
+Particularly, the data that we use in our experiments are point clouds sets. The capture of this data is performed by the Kinect sensor of robot Justina. To align several captures of point clouds of a scene, an implementation of the ICP (Iterative Closest Point) algorithm is used. Also, a sampling step is implemented using Vector Quantization \cite{linde1980algorithm}. The virtual environment built can be visualized using the simulator described in subsection \ref{subsec:Simulator} . 
 
 The system was successfully tested experimentally by reconstructing our laboratory. Figure 
 \ref{fig:SurfRecon} shows an image of multiple point clouds sets captured by the robot and the virtual environment created after the method described above.
@@ -194,11 +194,11 @@ Using this simulator, we have successfully tested well-known navigation algorith
 
 Figure \ref{fig:Simulator1} shows the robot simulated, the virtual representation of our laboratory and a path created using Dijkstra Algorithm based on a topological representation of the environment. In contrast, Figure \ref{fig:Simulator2} shows a path created using the same robot and virtual environment, but using an Occupancy Grid instead for representing the map.
 
-Thanks to the integration with ROS, after a simulation has been run, it allow us to test and visualise, in real time, the algorithms in robot Justina for result analysis and comparison. Different algorithms in a wide-range of environment configurations has been modelled and tested, both in simulation and in the real robot. 
+Thanks to the integration with ROS, after a simulation has been run, it allow us to test and visualize, in real time, the algorithms in robot Justina for result analysis and comparison. Different algorithms in a wide-range of environment configurations has been modelled and tested, both in simulation and in the real robot. 
 
 %%% CHORO DEL SR. JULIO
 \subsection{High level task planning using conceptual dependency}\label{subsec:ActionPln}
-This year, a new knowledge based system for high level task planning has been developed. This system is designed for interpretate a command in a natural language format and for generate a sequence of high level  actions that have to be completed to accomplish the command. With this system, the robot generates behaviours that can drive his own world representation, similarly to a human being. 
+This year, a new knowledge based system for high level task planning has been developed. This system is designed for interpret a command in a natural language format and for generate a sequence of high level  actions that have to be completed to accomplish the command. With this system, the robot generates behaviours that can drive his own world representation, similarly to a human being. 
 
 The system is composed by two principal modules:
 \begin{description}
@@ -220,11 +220,11 @@ So far, we have modelled actions like Navigation, Object Recognition, Face Recog
 %%% CHORO DEL SR. JESUS
 \subsection{Low or null texture objects recognition using RGB-D cameras}\label{subsec:objDet}
 
-Currently, several robust technics based on feature extraction and description exist for object recognition. However, if the objects are low textured, only a few number of features can be extracted, making the matching process unreliable. For these cases, we developed a method that combine three characteristics: color, size and shape, combining the color and depth information for the recognition process, after a 3D detection and segmentation in a plane for each object.
+Currently, several robust techniques based on feature extraction and description exist for object recognition. However, if the objects are low textured, only a few number of features can be extracted, making the matching process unreliable. For these cases, we developed a method that combine three characteristics: color, size and shape, combining the color and depth information for the recognition process, after a 3D detection and segmentation in a plane for each object.
 
 Color Information is extracted from the HSV space of the object's pixels and it is represented by the histogram of the Hue component, but only for pixels with Saturation and Value above certain threshold. For pixels below these thresholds, two more bins are added to the histogram. For campaign histograms we used the histogram Intersection \cite{swain1991_HistoInter}.
 
-The size and shape is estimated from the object's point cloud, which are obtained using an oriented bounding box (OBB) of the point cloud as follow: the base of the OBB is obtained from the oriented bounding rectangle of the projection of the points in the plane below them. The heights are obtained from the maximum distance of the points to the plane. The shape is characterized using the Hu Moments \cite{hu1962_moments} of the convex hull calculated from the points projected over the plane below them. 
+The size and shape is estimated from the object's point cloud, which are obtained using an Oriented Bounding Box (OBB) of the point cloud as follow: the base of the OBB is obtained from the oriented bounding rectangle of the projection of the points in the plane below them. The heights are obtained from the maximum distance of the points to the plane. The shape is characterized using the Hu Moments \cite{hu1962_moments} of the convex hull calculated from the points projected over the plane below them. 
 
 For the recognition process we compare in three steps: size, shape and color characteristics, removing candidates below a certain threshold for each step. At the end, from the remaining candidates, we select the best one according to a color-based similarity function. 
 
@@ -254,7 +254,7 @@ These method has been tested experimentally in the Rocking robotics competition,
 
 \section{Conclusions and future work}\label{sec:conclusions}
 
-The ViRbot system and robot Justina has been successfully tested in Robocup in the category @Home since the Robocup competition of Atlanta 2007. The team has get into the finals the last two years (2014 and 2015) in this competition. Also, in 2014, the team participated in the RoCKIn Competition wining a 1st place and a 2nd in different categories. In the 2015 edition of the same competition, the team won the second place in the ``Object perception'' test. Last year, in Robocup 2017, the team got into the 2nd stage.
+The ViRBot system and robot Justina has been successfully tested in RoboCup in the category @Home since the RoboCup competition of Atlanta 2007. The team has get into the finals the last two years (2014 and 2015) in this competition. Also, in 2014, the team participated in the RoCKIn Competition wining a 1st place and a $2^{nd}$ in different categories. In the 2015 edition of the same competition, the team won the second place in the ``Object perception'' test. Last year, in RoboCup 2017, the team got into the $2^{nd}$ stage.
 
 In these years, the full system has been improved, both in hardware and software, having reliable performance and showing promising results. Particularly, this year, we have a new omnidirectional mobile base for navigation and a new torso. In terms of software, we have change the way of conceiving the tests of the competition: from state machines to inferences based on rules.  
 
