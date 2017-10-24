@@ -24,7 +24,7 @@
 
 \begin{document}
 
-\title{Pumas@Home 2017 Team Description Paper
+\title{Pumas@Home 2018 Team Description Paper
 \thanks{Acknowledgment: This work was supported by PAPIIT-DGAPA UNAM under Grant IG100915}}
 \author{
 	Jesus Savage 
@@ -32,16 +32,14 @@
 	\and Marco Negrete 
 	\and Julio Cruz 
 	\and Jesus Cruz
-	\and Jose Cruz
-	\and Jaime Marquez 
-	\and Edgar Vazquez
-	\and Manuel Pano 
-	\and Edgar Silva
 	\and Hugo Estrada 
-	\and Hector Arce 
+	\and Jose Cruz
+	\and Edgar Vazquez
+	\and Jaime Marquez
+	\and Edgar Silva
+	\and Manuel Pano 
 	\and Luis Alvarez
 	\and Mauricio Matamoros
-	\and Federico Andrade
 }
 \institute{Bio-Robotics Laboratory, School of Engineering \\ National Autonomous University of Mexico \\
 \texttt{http://biorobotics.fi-p.unam.mx}}
@@ -53,12 +51,8 @@
 %%%%%%%%%%%%%
 \begin{abstract}
 
-This paper describes the service robot Justina of team Pumas that has participated in the @Home category of the RoboCup and RoCKIn
-international competitions; as well as our latest applied research. These competitions had influenced our architecture
-in the development of better systems for our service robots by developing RGB-D representation of the environments; action
-planning using space state representation, and low or null texture objects recognition using RGB-D cameras. 
-In our robotics architecture, the VIrtual and Real roBOt sysTem (VIRBOT), the operation of service robots is divided into
-several subsystems, each of them has a specific functionality  that contributes to the final operation of the robot.
+This paper describes the service robot Justina of team Pumas that has participated in the @Home category of the RoboCup and RoCKIn, both of them international competitions; as well as our latest applied research. These competitions had influenced our architecture in the development of better systems for our service robots by developing algorithms to natural language understanding, facial detection through multiple images using RGB cameras and the sound source localization (SSL). 
+In our robotics architecture, the VIrtual and Real roBOt sysTem (VIRBOT), the operation of service robots is divided into several subsystems, each of them has a specific functionality  that contributes to the final operation of the robot.
 By combining symbolic AI with digital signal processing techniques a good performance of a service robot is obtained.
 
 \end{abstract}
@@ -69,14 +63,9 @@ By combining symbolic AI with digital signal processing techniques a good perfor
 
 \section{Introduction}
 
-Service robots are hardware and software systems that assist humans to perform daily tasks in complex environments, to achieve this: 
-they have to be able to understand spoken or gesture commands from humans;  to be able to avoid static and
-dynamic obstacles while navigating in known and unknown environments; to be able to recognize and to manipulate objects and performing 
-several other tasks that a person might request. 
+Service robots are hardware and software systems that assist humans to perform daily tasks in complex environments, to achieve this: they have to be able to understand spoken or gesture commands from humans; to be able to avoid static and dynamic obstacles while navigating in known and unknown environments; to be able to recognize and to manipulate objects and performing several other tasks that a person might request. 
 
-Our team has been participated in the category @Home continuously since the start of this competition at the
-RoboCup in Bremen in 2006. Our team obtained the third place in Atlanta in 2007, and has reached the finals in 2014 and 2015, 
-last year, in the Robocup 2016, the team got into the 2nd stage.
+Our team has been participated in the category @Home continuously since the start of this competition at the RoboCup in Bremen in 2006. Our team obtained the third place in Atlanta in 2007, and has reached the finals in 2014 and 2015, last year, in the RoboCup 2017, the team obtained the fourth place and got the award for the best in Speech Recognition and Natural Language Understanding.
 
 The paper is organized as follows:
 section \ref{sec:background} enumerates the hardware and software components of our robot
@@ -90,10 +79,7 @@ laboratory; and finally, in section \ref{sec:conclusions}, the conclusions and f
 Our service robot Justina, see figure \ref{fig:justina}, has the following hardware configuration:\\
 
 \begin{wrapfigure}{r}{0.5\textwidth}
-  %\begin{center}
-	\includegraphics[angle=0, height=11cm, width=6cm\textwidth]{Figures/justina2017.eps}
-	%\includegraphics[width=0.48\textwidth]{Figures/justina2017.eps}
-  %\end{center}
+	\includegraphics[angle=0, height=11cm, width=5cm]{Figures/justina2017.eps}
   \caption{Robot Justina}
   \label{fig:justina}
 \end{wrapfigure}
@@ -129,16 +115,6 @@ several ROS's nodes. Also, for modules using the Microsoft operating system, we 
 link them with ROS nodes running on Linux.
 In the following sections are explained each of the layers of the VIRBOT system.
 
-%\begin{wrapfigure}{R}{0.7\textwidth}
-  %%\includegraphics[width=0.48\textwidth]{Figures/ViRBot.eps}
-  %%\includegraphics[angle=0, height=13cm, width=9cm]{Figures/ViRBot.eps}
-  %\includegraphics[angle=0, height=14cm, width=12cm]{Figures/ViRBot.eps}
-  %\caption{Block diagram of the ViRBot architecture.}
-  %\label{fig:virbot}
-%\end{wrapfigure}
-
-
-
 
 \begin{figure}[h]
 	\centering
@@ -147,25 +123,20 @@ In the following sections are explained each of the layers of the VIRBOT system.
 	\label{fig:virbot}
 \end{figure}
 
-%\newpage
 
 \subsection{Inputs Layer}
 
-This layer process the data from the robot's internal and external sensors, 
-they provide information of the internal state of the robot, as well as, the external world where the robot interacts.
+This layer process the data from the robot's internal and external sensors, they provide information of the internal state of the robot, along with the external world where the robot interacts.
 In some of Justina's designs it has lasers, sonars, infrared, microphones and stereo and RGB-D cameras.
-Digital signal processing techniques are applied to the data provided by the internal and external sensors to
-obtain a symbolic representation of the data, as well as, to recognize and to process voice and visual data.
-Pattern recognition techniques are used to create models of the objects and the persons that interact with the robot.
-With the symbolic representation this module generates a series of beliefs, that represent the state of the environment where
-the robot interacts.
+Digital signal processing techniques are applied to the data provided by the internal and external sensors to obtain a symbolic representation of the data, furthermore, to recognize and to process voice and visual data.
+Pattern recognition techniques are used to create models of the objects and the people that interact with the robot.
+With the symbolic representation this module generates a series of beliefs, that represent the state of the environment where the robot interacts.
 
 
 \subsection{Planning Layer}
 
-The beliefs generated by the perception module are validated by this layer, it uses the Knowledge Management layer
-to validate them, thus a situation recognition is created.
-Given a situation recognition, a set of goals are activated to solve it.
+The beliefs generated by the perception module are validated by this layer, it uses the Knowledge Management layer to validate them, thus a situation recognition is created.
+Given a situation recognized, a set of goals are activated in order to solve it.
 Action planning finds a sequence of physical operations to achieve the activated goals.
 
 
@@ -174,14 +145,12 @@ Action planning finds a sequence of physical operations to achieve the activated
 This layer has different types of maps for the representation of the environment, they are created using 
 SLAM techniques.
 Also in this layer there is a localization system, that uses the Kalman filter, to estimate the robot's position and orientation.
-A rule based system, CLIPS, developed by NASA, is used to represent the robot's knowledge, in which each rule contains the
-encoded knowledge of an expert.
+A rule based system, CLIPS, developed by NASA, is used to represent the robot's knowledge, in which each rule contains the encoded knowledge of an expert.
 
 
 \subsection{Execution Layer}
 This layer executes the actions and movements plans and it checks that they are executed accordingly.
-A set of hardwired procedures, represented by state machines, are used to partially solve specific problems, finding persons,
-object manipulation, etc. The action planner uses these bank of procedures and it joins some of them to generate a plan.
+A set of hardwired procedures, represented by state machines, are used to partially solve specific problems, person recognition, object manipulation, etc. The action planner uses these bank of procedures and it joins some of them to generate a plan.
 
 
 %%%%%%%%%%%%%%%%%%%
@@ -189,350 +158,163 @@ object manipulation, etc. The action planner uses these bank of procedures and i
 %%%%%%%%%%%%%%%%%%%
 
 \section{Current research}\label{sec:CurrentResearch}
-In this section is presented the current research developed in our laboratory to improve the performance of our service
-robots.
+In this section is presented the current research developed in our laboratory to improve the performance of our service robots.
 
-\subsection{RGB-D representation of the environments}\label{subsec:SurfRecon}
-For the construction of roadmaps, 3D data is used to find the occupied and free space where a robot can
-navigate, it uses clustering techniques to find a representation of them.
-The free space is found by separating the objects' and walls' planes from the floor's plane, that represents the space where the mobile
-robot navigates.
-The RGB-D cameras provide information through a cloud of points that represent the spatial position of each pixel of the 
-captured image.  In this research, the RGB information provided by the camera is not used, for the
-robot only collects 3D readings, \(R=\{ r_1,r_2,...,r_{N}\}\),
-\(r_j = (x_{screen_j},y_{screen_j},d_j)\) , where \(x_{screen_j},y_{screen_j}\) represent the pixel location in the captured image and
-\(d_j\) the distance to the objects in line of sight.
-Then \(q_j = (x_j,y_j,z_j)\), represents the spatial positions of the objects' points relative to the Kinect's position, mounted
-in top of the robot's mechatronic head.
+\subsection{Natural language understanding}\label{subsec:NaturalLU}
+Natural language understanding is used in order to the service robot interprets the language and then perform an especific task.
+One of the main problems using natural language understanding is the representation of meaning.  
+We have a framework for defining the semantics. The robot's semantics are therefore instructions that allow it to carry out relevant operations.
 
-The number of points captured by a 3D sensor in just one picture is immense, around 300,000 points, thus, it is necessary to 
-compress the 3D data to a minimum, to be able to find a proper representation of them. For this, clustering techniques are used,
-vector quantization (VQ), which also they help to partition the free space into regions, and the centroids of the regions become
-the nodes of a roadmap, that is used by a mobile robot to navigate.
+Conceptual Dependency (CD) is a theory, developed by Schank \cite{Schank}, for representing the meaning contained in sentences. 
+This technique finds the structure and the meaning of a sentence in just one step. 
+It is useful to represent sentences using this technique when there is not a strict grammar associated with the sentences, and also when the objective is to make inferences from them.
+The CD representation of a sentence is built using conceptual primitives, these represent thoughts and the relationships between thoughts. Using conceptual dependency facilitates the use of inference rules, because many inferences are already contained in the representation itself.
+There are several primitives to represent actions, for example two of the more commonly used are the following:
+
+\vspace{.01 in}
+		ATRANS: Transfer of an abstract relationship (e.g., give.)
+
+\vspace{.01 in}
+		PTRANS: Transfer of the physical location of an object (e.g., go.)
+\vspace{.01 in}
+
+Each primitive represents several verbs which have similar meaning. For instance give, buy, steal, and take have the same meaning, i.e., the transference of one object from one entity to another one.
+Each primitive is represented by a set of rules and data structures. Basically each primitive contains the following components:
+\vspace{.01 in}
+
+	An Actor: He is the one that perform the ACT.
+\vspace{.01 in}
+
+	An ACT: Performed by the actor, done to an object.
+\vspace{.01 in}
+
+	An Object: The action is performed on it.
+\vspace{.01 in}
+
+	A Direction: The location that an ACT is directed towards.
+\vspace{.01 in}
+
+	A State: The state that an object is in, and is represented using a knowledge base representation as
+facts in an expert system. 
+\vspace{.01 in}
+
+	For instance the phrase: {\bf "Robot, please give this book to Mary"}, 
+when the verb give is found in the sentence an ATRANS structure is issued.
+\vspace{.01 in}
+
+	(ATRANS (ACTOR NIL) (OBJECT NIL) (FROM NIL) (TO NIL))
+\vspace{.01 in}
+
+The empty slots (NIL) need to be filled finding the missing elements in the sentence. The actor is the robot, the 
+object is the book, etc, and it is represented by the following CD:
+\vspace{.01 in}
+
+	(ATRANS (ACTOR Robot) (OBJECT book) (FROM book's owner) (TO Mary))
+\vspace{.01 in}
 
 
- Given a set of \(N_v\) vectors, \(q_j=\{x_j,y_j,z_j\}; j=1,...,N_v\) that represent the position of the cloud points a set of
-centroids which represents these vectors is found.
-A collection of centroids is called a codebook.  The codebook is designed from a long training sequence that is representative of all
-vectors \(q_j\) to be encoded by the system.
-A modified VQ algorithm for 3D \cite{Marco} data is as follows:
+CDs can be use for representing simple actions. It is also well suited for representing commands or simple questions, but it is not very useful for representing complex sentences.
+The CD technique were implemented in an expert system.
 
-\vspace{0.1 in}
 
- \begin{itemize}[nolistsep,noitemsep]
-\item 1. Find an initial codebook \(D_1\), with one centroid \(C_1\), by averaging all the vectors \(q_j\), with \(L=1\) and \(m=1\).
+Much of the human problem solving or cognition can be expressed by IF THEN type production rules. Each rule corresponds to a modular collection of knowledge call chunk. The chunks are organized in loose arrangement with links to related chunk of knowledge, reasoning could be done using rules. 
+Each rule is formed by a left side that needs to be satisfied (Facts) and by a right side that produce the appropriate response (Actions).  
+\vspace{.01 in}
 
-%\vspace{0.1 in}
-\item 2. Modify each of the centroids \(C_i;i=1,...,L_m\) in \(D_m\) by adding them a vector \(\pm\psi\)
-of small magnitude to generate 2 new centroids from each of them, generating a new codebook  \(D_{m+1} \), and
-\( L_{m+1} = 2*L_m \), \(m=m+1\).
+		IF  Facts  THEN  Actions.
+\vspace{.01 in}
 
-%\vspace{0.1 in}
-\item 3. Given a codebook \(D_m={C_i;i=1,...,L_m}\) assign each vector \(q_j\) into the
-clusters \(R_k\) whose centroid \(C_k\) is closer to \(q_j\) according to some
-similitude measurement \(d_j = d(q_j,C_k)\). The measurement used is the Euclidean distance between two points.
+When an action is issued by a rule it may become a fact for other rules, creating links to other rules. A system may use thousands of rules to solve a problem, thus it is necessary a special mechanism that will select which rules will be fired according to the presented facts. That mechanism is an Expert System "Engine".
+The Inference Engine makes inferences by deciding which rules are satisfied by facts, prioritize the 
+satisfied rules, and executes the rule with the highest priority.
+This expert system provides a cohesive tool for handling a wide variety of knowledge with support for three different programming paradigms: rule-based, object-oriented, and procedural.
+%In the VIRBOT system an expert system maintains a knowledge data base that represents the state of the world.
+The data of the humans interacting with the robot, of the objects and the locations is represented using facts that contain several slots with information related with them.
+The Robot is able to perform operations like grasping an object, moving itself from on place to another, finding humans, etc. Then the objective of action planning is to find a sequence of physical operations to achieve the desired goal.
+These operations are represented by a state-space graph.
 
-%\vspace{0.1 in}
-\item 4. Recompute the centroids \(C_k\) for each of the clusters, \(R_k\), by averaging all the vectors
-\(q_j\) that belong to \(R_k\).
-
-%\vspace{0.1 in}
-\item 5. If the difference between the average distance \(\bar d_t = \frac {1} {N_v} \Sigma d(q_j,C_k)\), in iteration \(t\), between vectors \(q_j\)
-and their corresponding centroids \(C_k\), and the previous average distance \(\bar d_{t-1} \), \(| \bar d_t - \bar d_{t-1} | \ge \epsilon\),
-go to 3.
-
-%\vspace{0.1 in}
-\item 6. If \(L_m <\)  codebook size go to 2.
+In the previous example, when the user says {\bf "Robot, please give this book to Mary"}: 
+\begin{itemize}
+\item []
+	(ATRANS (ACTOR Robot) (OBJECT book) (FROM book's owner) (TO Mary))
 \end{itemize}
 
-
-\vspace{0.1 in}
-
- Where codebook size is the number of regions of the environment.
-Figure \ref{fig:ResultingClusters} shows in the left side the original RGB image captured by the Kinect, in the center
-it is shown the free space clusters in green and the occupied space clusters, in purple, the black regions are those points with no 
-depth information. In the right it is shown the resulting environment representation. Green dots represent the nodes,
-free space centroids, used to build the roadmap and calculate a path. Purple rectangles represent obstacles and the red lines are 
-the path calculated by Dijkstra algorithm to reach the goal point, also colored in red.
+All the information required for the actions planner to perform its operation is contained in the CD and knowledge data base. 
+Our system has been successfully tested in robotics competitions \cite{Savage}, as the RoboCup and RockIn 
+\cite{Robocup_2017}, in the category @Home.
+In RoboCup@Home 2017 our robot was awarded as the best in Speech and Natural Language Understanding.
 
 
-\begin{figure}[!ht]
-\begin{center}
-\includegraphics[width=3.65cm,width=3.0cm]{Figures/VQ_Original.eps}
-\includegraphics[width=3.65cm,width=3.0cm]{Figures/VQ_Clustered.eps}
-\includegraphics[width=3.65cm,width=3.0cm]{Figures/VQ_Map.eps}
-\end{center}
-\caption{\textbf{Left:} Original RGB image captured by the Kinect. \textbf{Center:} Free space clusters and occupied space clusters.
-\textbf{Right:} Resulting environment representation.}
-\label{fig:ResultingClusters}
+
+\subsection{Facial detection through multiple images using RGB cameras}\label{subsec:FacialReco}
+The facial detection is one of the most primordial tasks that a service robot must be able to perform, proof of them is that in the RoboCup@Home there is a test in which the robot must correctly state the number of people who make up a crowd, these people can  be stand, sit and even lie down, the crowd can be composed of very tall people or children and the crowd size can range from 5 to 10 people, so that correctly stating the crowd turns out to be a difficult task to be solved with a single image, that is why we decided to figure out the problem by generating a panoramic image composed by several images at different angles. Stitching is the process of merging multiple images with fields of view that overlap to produce a panoramic image. %Most image stitching techniques require almost exact overlaps between images to produce splendid results. 
+The image stitching method can be divided into three main phases: image registration, calibration and mixing.
+
+\begin{itemize}
+	\item \textbf{Registration:} Involves pairing features in set of images or directly uses alignment methods to search for image alignments that minimize the sum of absolute differences between pixel overlays.
+	\item \textbf{Calibration:} Image calibration aims to minimize the differences between an ideal lens model and the combination of camera and lens that was used, optical defects such as distortions, different exposures between images, camera response and chromatic aberrations.
+	\item \textbf{Mixing:} Involves making improvements, including color adjustments. Colors are adjusted between images to set off for differences in exposure. The images are mixed together and the arrangement of the stitching line is done to minimize the visibility of the joints between the images.
+\end{itemize}
+
+The first thing we do in our implementation is to convert the color images to grayscale images, then we use SURF \cite{surf} as a feature detector. The next step is to perform pairing of the detectors using FLANN \cite{flann}, we also execute a computation to obtain the maximum and minimum distances of the points of interest. We later found the homography matrix using RANSAC \cite{ransac}. Finally we combined the images using the homography matrix. All this process is done iteratively, first we start with two images, to the union of those two images we can join another and so on. Once we have the panoramic image, we work with it to compute the facial detection. The results are shown in figure \ref{pano_image}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Figures/stitching.jpg}
+	\caption{Panoramic Image.}
+	\label{pano_image}
+\end{figure}
+ 
+
+
+\subsection{Sound Source Localization}\label{subsec:SoundSource}
+The Sound Source Localization (SSL) is performed by estimating the direction of arrival (DOA) of the voice signals of people who are in unknown positions around the robot. Considering the DOA estimate is required over an angular range of $[0,2\pi)$, a triangular arrangement of microphones was used, as shown in figure \ref{F_array}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.37\textwidth]{Figures/array.png}
+	\caption{Equilateral triangular arrangement \cite{hioka2003}.}
+	\label{F_array}
 \end{figure}
 
-To obtain real time performance the VQ algorithm was processed in parallel in a GPU programmed with CUDA, it was also implemented
-the whole process sequentially, using C++, to compare processing times and to test the effectiveness of the parallel 
-implementation. Table \ref{tab:Times} shows the results obtained comparing the VQ implementation in parallel and in sequentially of 
-the environment's 3D data.
-As we can see for the results shown in this table, the parallel implementation of the VQ algorithm is in average 17 times faster 
-than the sequentially one, thus this technique can be used by the robot in real time when it navigates.
 
+For the DOA estimation it is crucial to obtain the phase information present in the signals of each of the microphones \cite{karbasi2006}. In order to obtain accurate information about the signal offset in each of the microphones, an MCU was used for the acquisition and processing of the signals, the MCU used is the TMS320F28377S, which has two 12-bit analog-to-digital (ADC) converters, each of these ADCs has seven channels with independent conversion starts (SOC), with these ADCs can be obtained up to 1.1 MSPS \cite{DTASHT2}. The DOA calculation is performed using the cross-power spectral density (CPSD) between pairs of microphones, the CPSD between signals  $x_1$ and $x_2$ is obtained as:
+\begin{equation}
+	G_{12}(\omega) = X_1^{*}(\omega) X_2(\omega) = P(\omega)e^{-j\omega \tau}
+\end{equation} 
 
-\begin{table}
-\centering
-\begin{tabular}{|l|l|}
-\hline
-Sequential Time [s] & Parallel Time [s]\\
-\hline
-$\qquad$1.341 & $\qquad$0.078\\
-$\qquad$1.373 & $\qquad$0.078\\
-$\qquad$1.341 & $\qquad$0.078\\
-$\qquad$1.388 & $\qquad$0.077\\
-%$\qquad$1.404 & $\qquad$0.078\\
-$\qquad$1.357 & $\qquad$0.078\\
-\hline
-\end{tabular}
-\caption{Comparison of processing time for serial and parallel implementations of the VQ algorithm.}
-\label{tab:Times}
-\end{table}
-
-
-
-%To align several captures of point clouds of a scene, an implementation of the ICP 
-%(Iterative Closest Point) algorithm is used. Also, a reduction of data is implemented using Vector Quantization 
-%\cite{linde1980algorithm}. 
-%The virtual environment builded can ve visualised using the simulator described in subsection
-%\ref{subsec:Simulator}. 
-
-%The system was successfully tested experimentally by reconstructing part of the environment in the @Home arena in the
-%2016 RoboCup in Leipzig, Germany. Figure \ref{fig:SurfRecon} shows an image of multiple point clouds sets captured by the robot 
-%and the virtual environment created.
-
-%\begin{figure}
-	%\centering
-	%\begin{subfigure}{0.49\textwidth}
-		%\includegraphics[width=\textwidth]{Figures/envReco1.eps} 
-		%\caption{ Several point clouds captures of a scene.}
-		%\label{fig:SurfRecon1}
-	%\end{subfigure}
-	%\begin{subfigure}{0.49\textwidth}
-		%\includegraphics[width=\textwidth]{Figures/envReco2.eps}
-		%\caption{Virtual environment build after processing the sets.}
-		%\label{fig:SurfRecon2}
-	%\end{subfigure}
-	%\caption{Example of the test performed in a real scene.}
-	%\label{fig:SurfRecon}
-%\end{figure}
-
-
-%\subsection{Service Mobile Robot Simulator}\label{subsec:Simulator}
-
-%Despite the fact tha exist several simulators of mobile robots, we developed our own custom simulator to test algorithms and 
-%behaviours used  in autonomous service robot navigation in dynamic environments. This simulator allow us and new robotics students 
-%to test and improve behaviours for the navigation module of robot Justina.
-
-%This simulator has implemented several features: such as laser range finder simulations, obstacle representation and rendering 
-%using point clouds sets, collision detection, kinematics models for certain mobile base configurations, etc, polygons growing. 
-%It has also a graphical user interface and is fully integrated within the ROS framework, the simulator is on top of the R-Vis 
-%visualitation system
-
-%Using this simulator, we have successfully tested well-known navigation algorithms such as artificial potential fields, 
-%occupancy grid exploration, topologically map routing using graph search methods, and some hybrid behaviours that combines reactive 
-%models and hierarchical models.
-%New students can use first this simulator testing their algorithms with the virtual robot and later test them in the real 
-%robot Justina.
-
-
-%\begin{figure}[h]
-	%%\centering
-	%%\begin{subfigure}{0.49\textwidth}
-		%\includegraphics[width=\textwidth]{Figures/simulator1.eps} 
-		%\caption{Path planning using an algorithm for a Topological Map.}
-		%\label{fig:Simulator1}
-	%%\end{subfigure}
-	%%\begin{subfigure}{0.49\textwidth}
-		%%\includegraphics[width=\textwidth]{Figures/simulator2.eps}
-		%%\caption{Path planning using an algorithm for an Occupancy Grid.}
-		%%\label{fig:Simulator2}
-		%%\end{subfigure}
-	%%\caption{Test of a navigation algorithm using the graphical interface of the simulator. }
-	%%\label{fig:Simulator}
-%\end{figure}
-
-%Figure \ref{fig:Simulator1} shows the robot simulated, the virtual representation of our laboratory and a path created using Dijkstra Algorithm based on a topological representation of the environment. 
-%In contrast, Figure \ref{fig:Simulator2} shows a path created using the same robot and virtual environment, but using an 
-%Occupancy Grid instead for representing the map.
-
-%Thanks to the integration with ROS, after a simulation has been run, it allow us to test and visualise, in real time, the algorithms 
-%in robot Justina for result analysis and comparison. Different algorithms in a wide-range of environment configurations has been 
-%modelled and tested, both in simulation and in the real robot. 
-
-\subsection{Action planning using space state representation}\label{subsec:ActionPln}
-VIRBOT's task planning uses concepts from space-state search planning and hierarchical task networks,
-as the ones used in classical STRIPS-like planners.
-
-The plan is generated by an inference engine, CLIPS, that it uses a set of rules that represent a hierarchical structure of tasks.
-The planning rules are useful for considering different situations, present in the environment, so that the robot can act accordingly.
-The mechanism to generate a new plan starts with a spoken command, the representation of it  triggers a set of rules that generate the plan.
-The spoken commands representation is defined by performing a syntactical analysis and a semantic interpretation of them using a 
-natural language technique called Conceptual Dependency \cite{Schank}.
-The Robot is able to perform atomic operations like grasping an object, moving itself
-from on place to another, finding humans, etc. Then the objective of action planning is to
-find a sequence of this atomic operations to achieve the desired goal.
-
-This research was evaluated under the General Purpose Service Robot (GPSR) test of the @Home category, and after generating 30
-random commands of the set of commands of this test, the robot was able to accomplish, trough action planning, the required actions
-contained in the solution of the plans, shown in table \ref{tab:action_planning}.  
-
-\begin{table}
-\centering
-\begin{tabular}{|l|l|}
-\hline
-Type of actions & Percentage of success\\
-\hline
-$\qquad$Navigation & $\qquad$75\\
-$\qquad$Object Recognition & $\qquad$59\\
-$\qquad$Face Recognition & $\qquad$72\\
-$\qquad$Object Handling & $\qquad$42\\
-$\qquad$Answering questions & $\qquad$87\\
-\hline
-\end{tabular}
-\caption{Action planning success}
-\label{tab:action_planning}
-\end{table}
-
-
-
-
-%\begin{figure}[H]
-	%\centering
-	%\includegraphics[width=0.8\textwidth]{Figures/taskPlanning.eps}
-	%\caption{Comparison of success between simulated plans and real plans.}
-	%\label{fig:taskPlanning}
-%\end{figure}
-
-%We have compared the number of successfully executed plans, both in simulation and with the real robot, as can be seen in Figure \ref{fig:taskPlanning}, for 100 executions for each action.
-
-\subsection{Low or null texture objects recognition using RGB-D cameras}\label{subsec:objDet}
-
-Currently, several robust techniques based on feature extraction and description exist for object recognition. However, if the objects 
-are low textured, only a few number of features can be extracted, making the matching process unreliable. For these cases, 
-we developed a method that combine three characteristics of the objects: color, size and shape, 
-after a 3D detection and segmentation in a plane for each object.
-
-Color information is extracted from the HSV space of the object's RGB pixels and it is represented by the histogram of the Hue 
-components.
-%but only for pixels with Saturation and Value above certain threshold. For pixels below these thresholds, two more bins are added to 
-%the histogram. 
-%For campaign histograms we used the histogram Intersection \cite{swain1991_HistoInter}.
-
-The size and shape is estimated from the object's point cloud, which are obtained using an oriented bounding box (OBB) of the points
-cloud.
-% as follow: the base of the OBB is obtained from the oriented bounding rectangle of the projection of the points in the plane below 
-%them. The heights are obtained from the maximum distance of the points to the plane. 
-The shape is characterized using the Hu Moments \cite{hu1962_moments} of the convex hull calculated from the points projected over the
-plane below them. 
-Thus, with these representations an histogram is obtained for each of the objects and  
-for the recognition process we compare the objects' histograms with the histogram of the object to be recognized.
-
-%\begin{align*}
-%H &= H_H \cup H_S \cup H_V \\
-%H_H &=  B_1 \cup B_2 \cup ... \cup B_N \text{ donde } H=[0,255], V=[50,255], S=[50,255] \\
-%H_S &=  B_{N+1} \text{ donde } H=[0,255], V=[0,50], S=[50,255] \\
-%H_V &=  B_{N+2} \text{ donde } H=[0,255], V=[50,255], S=[0,50]
-%\end{align*}
-
-%, removing candidates below a certain threshold for each step. At the end, from the remaining candidates, we select the best one according to a color-based similarity function. 
-
-
-%Por tanto esto queda como:
-
+being $X_1(\omega)$ and $X_2(\omega)$ the Fourier transforms (FT) of $x_1(n)$ y $x_2(n)$, respectively.%i.e., if you have two signals $x_1(n)$ and $x_2(n)$ defined as:
 %\begin{equation}
-%H = \underbrace{ B_1 \cup B_2 \cup ... \cup B_N }_{H=[0,255], V=[50,255], S=[50,255]} \cup \underbrace{B_{N+1}}_{H=[0,255], V=[0,50], S=[50,255]} \cup \underbrace{B_{N+2}}_{H=[0,255], V=[50,255], S=[0,50]} 
+%	x_1(n) = s(n)+\eta_1(n)
+%\end{equation}
+%
+%\begin{equation}
+%	x_2(n) = s(n-\tau)+\eta_2(n)
 %\end{equation}
 
-
- The histograms are compared using histogram intersections, \cite{swain1991_HistoInter}:
-
-\begin{equation}
-H(I,M) = \frac{ \sum_{j=1}^{n} \min(I_j, M_j) }{ \sum_{j=1}^{n} M_j }
+%where $s(n)$ is the signal of interest, $\eta_1(n)$ and $\eta_2(n)$ are uncorrelated noise signals, the CPSD between signals $x_1$ and $x_2$ is obtained as:
+In the case of the triangular arrangement, there will be three pairs of microphones, so there are three CPSDs. Using the three previous CPSDs, the integrated cross-spectrum can be obtained as:
+\begin{equation} \label{eq_doa}
+	G_{\phi,\theta}^{(\omega)} (\theta,\phi) = G_{x2y}^{(\omega)}(\phi)G_{xy}^{(\omega)}(\theta)+G_{yz}^{(\omega)}(\theta)+G_{z2y}^{(\omega)}(\phi)G_{zx}^{(\omega)}(\theta)
 \end{equation}
 
-Where \(I\) is the histogram of the object to be recognized, \(M\) represents one of the stored objects' histograms and \(n\) is the
-number of bins in the histograms. 
 
-This method has been tested experimentally, showing fast and robust results for changes in light, scale, and rotation in a plane
-parallel to the plane below the object. 
-Figure \ref{fig:objReco} shows an example of objects' recognition on a shelf (multiple planes).
-
-\begin{figure}
-	\centering
-	\begin{subfigure}{0.49\textwidth}
-		%\includegraphics[width=\textwidth]{Figures/objetos1.eps}
-		\includegraphics[angle=0, height=3cm, width=4cm]{Figures/objetos1.eps}
-		\caption{Objects can be segmented even with occlusions.}
-		\label{fig:objReco2}
-	\end{subfigure}
-	\begin{subfigure}{0.49\textwidth}
-		%\includegraphics[width=\textwidth]{Figures/objetos2.eps} 
-		\includegraphics[angle=0, height=3cm, width=4cm]{Figures/objetos2.eps} 
-		\caption{ Point clouds corresponding to each segmented object.}
-		\label{fig:objReco1}
-	\end{subfigure}
-	\caption{Example of object segmentation on several planes.}
-	\label{fig:objReco}
-\end{figure}
-
-Table \ref{tab:comp} shows the results obtained by comparing this histogram method with a SIFT algorithm for 25 objects
-without or almost no texture.
-
-
-\begin{table}
-\centering
-\begin{tabular}{|c||c|c|c|c|}
- \hline
-%System & \% Recognized & \% No recognized & \% Errors & $\tau_{avg}$ \\
-System & \% Recognized & \% No recognized  \\
- \hline
-Proposed & \textbf{91.333} & \textbf{7.666} \\
-SIFT & 22.333 & 77.666 \\
-\hline
-\end{tabular}
-\\
-\caption{Comparison of recognition of objects using color, size and shape histograms and SIFT.}
-\label{tab:comp}
-\end{table}
-
-As we can see for the results on table \ref{tab:comp} this technique outperforms the SIFT one.
-
-
+The above equation has its maximum when $\phi=\theta$, In this way, the angle of arrival is located at the angle $\phi$ that maximizes the equation (\ref{eq_doa}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  CONCLUSION AND FUTURE WORK  %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Conclusions and future work}\label{sec:conclusions}
-It is clear, that during the 10 years in which our team Pumas has been participated in the RoboCup and 2 years
-in the Rockin \cite{Rockin} in the category @Home, the performance and research developed, in the service robot area, in our 
-laboratory has been improved considerably.
-Our service robot architecture, the VIRBOT, has been evolving according to the requirement that these robotics
-competitions asked each year.
-In these years, the full system has been improved, both in hardware and software, having reliable performance and showing promising 
-results. Particularly, this year, we have a new omnidirectional mobile base for navigation and a new torso. 
-In terms of software, we have change the way of conceiving the tests of the competition: from static state machines to inferred
-action planning generated by a rule based system. 
-As for future work, the computer vision algorithms will be improved by using Hidden Markov Models (HMM) to have a better 
-recognition of objects and persons. Also, it will be explored fault tolerant systems to help the robot to recover from failures.
-
-
-%\bibliographystyle{unsrt}
-%\bibliography{References}
+It is clear, that during the 10 years in which our team Pumas has been participated in the RoboCup and 2 years in the Rockin \cite{Robocup_2017} in the category @Home, the performance and research developed, in the service robot area, in our laboratory has been improved considerably.
+Our service robot architecture, the VIRBOT, has been evolving according to the requirement that these robotics competitions asked each year.
+In these years, the full system has been improved, both in hardware and software, having reliable performance and showing promising results. Particularly, this year, we have a new omnidirectional mobile base for navigation and a new torso. 
+In terms of software, we have change the way of conceiving the tests of the competition: from static state machines to inferred action planning generated by a rule based system. 
+As for future work, the task of following humans will be improved by combining vision algorithms using the Kinect sensor and our current system tha use a laser. Also, it will be explored topics as the memory and enviromental reasoning of the robot, in order to explain thinks that hapenned in the past. Moreover we are working in a mask with lights that serves as an interface to express different emotions.
 \bibliographystyle{unsrt}
 \bibliography{bibliography,justina}
 
 \begin{thebibliography}{1}
 
-%\bibitem{Robocup}
-%{\em RoboCup@Home} 2015: Rule and Regulations, Loy van Beek, Mauricio
-%Matamoros and  Sven Wachsmuth,
-%http://www.robocupathome.org/rules/2015\_rulebook.pdf, 2015.
 
 \bibitem{virbot}
 {\em ViRbot: A System for the Operation of Mobile Robots}, Savage, Jesus and et al, RoboCup 2007: Robot Soccer World Cup XI,
@@ -541,34 +323,95 @@ pp 512-519, Springer Berlin Heidelberg, 2007.
 \bibitem{muller}
 {\em The Design of Intelligent Agents: A Layered Approach}, Muller, Jorg P,Springer-Verlag New York, Inc.1997.
 
-
-\bibitem{Marco}
-{\em Parallel implementation of roadmap construction for mobile robots using rgb-d cameras},
-Marco Negrete, Jes{\'u}s Savage, Jes{\'u}s Cruz, and Jaime M{\'a}rquez, OGRW2014, pages 184--187, 2014.
-
 \bibitem{Schank}
 {\em Conceptual dependency and its descendants}, Steven L. Lytinen, Computers \& Mathematics with Applications, 1992.
 
-\bibitem{hu1962_moments}
-{\em Visual pattern recognition by moment invariants}, Ming-Kuei Hu, IRE Transactions on Information Theory, 8(2):179--187, 1962.
+\bibitem{Savage}
+{\em The Role of Robotics Competitions for the Development of Service Robots}, 
+ Jesus Savage, Marco Negrete, Mauricio Matamoros, Jesus Cruz,
+IJCAI'16, Workshop on Autonomous Mobile Service Robots, New York, USA, 2016.
 
-\bibitem{swain1991_HistoInter}
-{\em Color indexing},  Michael~J Swain and Dana~H Ballard, International journal of computer vision, 7(1):11--32, 1991.
+\bibitem{Robocup_2017}
+{\em RoboCup@Home} http://www.robocupathome.org
+\\
+{\em Rockin} http://rockinrobotchallenge.eu/home.php
 
+\bibitem{surf}
+{\em SURF: Speeded Up Robust Features}, Herbert B., Andreas E., Tinne T., Luc Van G., Computer Vision and Image Understanding (CVIU), 110(3): 346-359, 2008.
 
-\bibitem{Rockin}
-http://rockinrobotchallenge.eu/home.php
+\bibitem{flann}
+{\em Fast Approximate Nearest Neighbors with Automatic Algorithm Configuration}, Marius Muja and David G. Lowe, International Conference on Computer Vision Theory and Applications (VISAPP'09), 2009.
+
+\bibitem{ransac}
+{\em  Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography}, Fischler, Martin A. and Bolles, Robert C., Commun. ACM, 24(6): 381-395, 1981.
+
+\bibitem{hioka2003}\textit{DOA estimation of speech signal using equilateral-triangular microphone array}, Yusuke Hioka and Nozomu Hamada, 8th European Conference on Speech Communication and Technology (EUROSPEECH 2003), 2003.
+
+\bibitem{karbasi2006}\textit{A DOA estimation method for an arbitrary triangular microphone arrangement}, Amin Karbasi and Akihiki Sugiyama, 14th European Signal processing Conference (EUSIPCO 2006), 2006.
+
+\bibitem{DTASHT2} 
+{\em TMS320F2837xS Data Sheet} http://www.ti.com/lit/ds/sprs881b/sprs881b.pdf
 
 
 \end{thebibliography}
 
+\section{Team Information}\label{sec:TeamInfo}
+{\bf Name of Team:} 
 
 
+Pumas\\
+{\bf Contact Information:}
+
+
+Jesus Savage
+
+
+Bio-Robotics Laboratory
+
+
+School of Engineering 
+
+
+National Autonomous University of Mexico
+
+
+robotssavage@gmail.com\\
+{\bf Web Site:}
+
+
+http://biorobotics.fi-p.unam.mx\\
+{\bf Team Members:}
+
+
+Jesus Savage, Reynaldo Martell, Marco Negrete, Julio Cruz, Jesus Cruz, 
+
+
+Hugo Estrada, Jose Cruz, Edgar Vazquez, Jaime Marquez, Edgar Silva, 
+
+
+Manuel Pano, Luis Alvarez, Mauricio Matamoros\\
+{\bf Description of Hardware:}
+
+Justina's Robotics Architecture (cf. section 2)\\
+{\bf Description of Software:}
+
+Most of our software and configurations are open-source and can found at: 
+
+https://github.com/RobotJustina/JUSTINA\\
+
+\begin{tabular}{l@{\extracolsep{3 cm}}  r}
+ \hline                 
+   Operating System & Ubuntu 16.04 LTS; Windows 7 VM \\
+   Middleware & ROS Kinetic; Blackboard\\
+   SLAM & ROS Gmapping\\
+   Navigation & Navigation using Kinect + Ocupancy grid + A*\\
+   Object Recognition & Histogram Disparity\\
+   People Detection & Haar Cascades and OpenPoses\\
+   Speech Synthesis & Loquendo\\
+   Speech Recognition & Microsoft Speech Recognition\\
+ \hline  
+ \end{tabular}
+	
 
 
 \end{document} 
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:
