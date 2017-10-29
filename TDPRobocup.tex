@@ -79,7 +79,7 @@ laboratory; and finally, in section \ref{sec:conclusions}, the conclusions and f
 Our service robot Justina, see figure \ref{fig:justina}, has the following hardware configuration:\\
 
 \begin{wrapfigure}{r}{0.5\textwidth}
-	\includegraphics[angle=0, height=11cm, width=5cm]{Figures/justina2017.eps}
+	\includegraphics[angle=0, height=11cm, width=6cm]{Figures/justina_scheme.png}
   \caption{Robot Justina}
   \label{fig:justina}
 \end{wrapfigure}
@@ -118,7 +118,7 @@ In the following sections are explained each of the layers of the VIRBOT system.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[angle=0, height=12cm, width=12cm]{Figures/ViRBot.eps}
+	\includegraphics[angle=0, height=10cm, width=10cm]{Figures/ViRBot.eps}
 	\caption{Block diagram of the ViRBot architecture.}
 	\label{fig:virbot}
 \end{figure}
@@ -247,7 +247,7 @@ In RoboCup@Home 2017 our robot was awarded as the best in Speech and Natural Lan
 
 
 \subsection{Facial detection through multiple images using RGB cameras}\label{subsec:FacialReco}
-The facial detection is one of the most primordial tasks that a service robot must be able to perform, proof of them is that in the RoboCup@Home there is a test in which the robot must correctly state the number of people who make up a crowd, these people can  be stand, sit and even lie down, the crowd can be composed of very tall people or children and the crowd size can range from 5 to 10 people, so that correctly stating the crowd turns out to be a difficult task to be solved with a single image, that is why we decided to figure out the problem by generating a panoramic image composed by several images at different angles. Stitching is the process of merging multiple images with fields of view that overlap to produce a panoramic image. %Most image stitching techniques require almost exact overlaps between images to produce splendid results. 
+The facial detection is one of the most primordial tasks that a service robot must be able to perform, proof of them is that in the RoboCup@Home there is a test in which the robot must correctly state the number of people who make up a crowd, these people can  be stand, sit and even lie down, the crowd can be composed of very tall people or children and the crowd size can range from 5 to 10 people, so that correctly stating the crowd turns out to be a difficult task to be solved with a single image, that is why we decided to figure out the problem by generating a registered image composed by several images at different angles. Stitching is the process of merging multiple images with fields of view that overlap to produce a registered image. %Most image stitching techniques require almost exact overlaps between images to produce splendid results. 
 The image stitching method can be divided into three main phases: image registration, calibration and mixing.
 
 \begin{itemize}
@@ -256,11 +256,11 @@ The image stitching method can be divided into three main phases: image registra
 	\item \textbf{Mixing:} Involves making improvements, including color adjustments. Colors are adjusted between images to set off for differences in exposure. The images are mixed together and the arrangement of the stitching line is done to minimize the visibility of the joints between the images.
 \end{itemize}
 
-The first thing we do in our implementation is to convert the color images to grayscale images, then we use SURF \cite{surf} as a feature detector. The next step is to perform pairing of the detectors using FLANN \cite{flann}, we also execute a computation to obtain the maximum and minimum distances of the points of interest. We later found the homography matrix using RANSAC \cite{ransac}. Finally we combined the images using the homography matrix. All this process is done iteratively, first we start with two images, to the union of those two images we can join another and so on. Once we have the panoramic image, we work with it to compute the facial detection. The results are shown in figure \ref{pano_image}.
+The first thing we do in our implementation is to convert the color images to grayscale images, then we use SURF \cite{surf} as a feature detector. The next step is to perform pairing of the detectors using FLANN \cite{flann}, we also execute a computation to obtain the maximum and minimum distances of the points of interest. We later found the homography matrix using RANSAC \cite{ransac}. Finally we combined the images using the homography matrix. All this process is done iteratively, first we start with two images, to the union of those two images we can join another and so on. Once we have the registered image, we work with it to compute the facial detection. The results are shown in figure \ref{pano_image}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\textwidth]{Figures/stitching.jpg}
-	\caption{Panoramic Image.}
+	\includegraphics[angle=0, height=5cm, width=10cm]{Figures/sceneComplete_pano.png}
+	\caption{Facial Detection on a Registered Image.}
 	\label{pano_image}
 \end{figure}
  
@@ -309,7 +309,7 @@ It is clear, that during the 10 years in which our team Pumas has been participa
 Our service robot architecture, the VIRBOT, has been evolving according to the requirement that these robotics competitions asked each year.
 In these years, the full system has been improved, both in hardware and software, having reliable performance and showing promising results. Particularly, this year, we have a new omnidirectional mobile base for navigation and a new torso. 
 In terms of software, we have change the way of conceiving the tests of the competition: from static state machines to inferred action planning generated by a rule based system. 
-As for future work, the task of following humans will be improved by combining vision algorithms using the Kinect sensor and our current system tha use a laser. Also, it will be explored topics as the memory and enviromental reasoning of the robot, in order to explain thinks that hapenned in the past. Moreover we are working in a mask with lights that serves as an interface to express different emotions.
+As for future work, the task of following humans will be improved by combining vision algorithms using the Kinect sensor and our current system tha use a laser. Also, it will be explored topics as the memory and enviromental reasoning of the robot, in order to explain things that hapenned in the past. Moreover we are working in a mask with lights that serves as an interface to express different emotions.
 \bibliographystyle{unsrt}
 \bibliography{bibliography,justina}
 
