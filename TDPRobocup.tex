@@ -256,25 +256,29 @@ The image stitching method can be divided into three main phases: image registra
 	\item \textbf{Mixing:} Involves making improvements, including color adjustments. Colors are adjusted between images to set off for differences in exposure. The images are mixed together and the arrangement of the stitching line is done to minimize the visibility of the joints between the images.
 \end{itemize}
 
+
 The first thing we do in our implementation is to convert the color images to grayscale images, then we use SURF \cite{surf} as a feature detector. The next step is to perform pairing of the detectors using FLANN \cite{flann}, we also execute a computation to obtain the maximum and minimum distances of the points of interest. We later found the homography matrix using RANSAC \cite{ransac}. Finally we combined the images using the homography matrix. All this process is done iteratively, first we start with two images, to the union of those two images we can join another and so on. Once we have the registered image, we work with it to compute the facial detection. The results are shown in figure \ref{pano_image}.
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[angle=0, height=5cm, width=10cm]{Figures/sceneComplete_pano.png}
+	\includegraphics[angle=0, height=3.7cm, width=8cm]{Figures/sceneComplete_pano.png}
 	\caption{Facial Detection on a Registered Image.}
 	\label{pano_image}
 \end{figure}
+
+
  
 
 
 \subsection{Sound Source Localization}\label{subsec:SoundSource}
-The Sound Source Localization (SSL) is performed by estimating the direction of arrival (DOA) of the voice signals of people who are in unknown positions around the robot. Considering the DOA estimate is required over an angular range of $[0,2\pi)$, a triangular arrangement of microphones was used, as shown in figure \ref{F_array}.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.37\textwidth]{Figures/array.png}
+\begin{wrapfigure}{r}{0.4\textwidth}
+	\includegraphics[angle=0, height= 4cm, width= 4.5cm]{Figures/array.png}
 	\caption{Equilateral triangular arrangement \cite{hioka2003}.}
 	\label{F_array}
-\end{figure}
+\end{wrapfigure}
+The Sound Source Localization (SSL) is performed by estimating the direction of arrival (DOA) of the voice signals of people who are in unknown positions around the robot. Considering the DOA estimate is required over an angular range of $[0,2\pi)$, a triangular arrangement of microphones was used, as shown in figure \ref{F_array}.
+
 
 
 For the DOA estimation it is crucial to obtain the phase information present in the signals of each of the microphones \cite{karbasi2006}. In order to obtain accurate information about the signal offset in each of the microphones, an MCU was used for the acquisition and processing of the signals, the MCU used is the TMS320F28377S, which has two 12-bit analog-to-digital (ADC) converters, each of these ADCs has seven channels with independent conversion starts (SOC), with these ADCs can be obtained up to 1.1 MSPS \cite{DTASHT2}. The DOA calculation is performed using the cross-power spectral density (CPSD) between pairs of microphones, the CPSD between signals  $x_1$ and $x_2$ is obtained as:
@@ -406,9 +410,12 @@ https://github.com/RobotJustina/JUSTINA\\
    SLAM & ROS Gmapping\\
    Navigation & Navigation using Kinect + Ocupancy grid + A*\\
    Object Recognition & Histogram Disparity\\
-   People Detection & Haar Cascades and OpenPoses\\
+   Face Detection & Haar Cascades\\
+   People Detection & OpenPoses\\
+   Face Recognition & EigenFaces\\
    Speech Synthesis & Loquendo\\
    Speech Recognition & Microsoft Speech Recognition\\
+   Inference Engine & CLIPS\\
  \hline  
  \end{tabular}
 	
