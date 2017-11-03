@@ -29,10 +29,10 @@
 \author{
 	Jesus Savage 
 	\and Reynaldo Martell 
+	\and Hugo Estrada 
 	\and Marco Negrete 
 	\and Julio Cruz 
 	\and Jesus Cruz
-	\and Hugo Estrada 
 	\and Jose Cruz
 	\and Edgar Vazquez
 	\and Jaime Marquez
@@ -247,17 +247,28 @@ In RoboCup@Home 2017 our robot was awarded as the best in Speech and Natural Lan
 
 
 \subsection{Facial detection through multiple images using RGB cameras}\label{subsec:FacialReco}
-The facial detection is one of the most primordial tasks that a service robot must be able to perform, proof of them is that in the RoboCup@Home there is a test in which the robot must correctly state the number of people who make up a crowd, these people can  be stand, sit and even lie down, the crowd can be composed of very tall people or children and the crowd size can range from 5 to 10 people, so that correctly stating the crowd turns out to be a difficult task to be solved with a single image, that is why we decided to figure out the problem by generating a registered image composed by several images at different angles. Stitching is the process of merging multiple images with fields of view that overlap to produce a registered image. %Most image stitching techniques require almost exact overlaps between images to produce splendid results. 
+The facial detection is one of the most primordial tasks that a service robot must be able to perform, proof of them is that in the RoboCup@Home there is a test in which the robot must correctly state the number of people who make up a crowd, these people can  be stand, sit and even lie down, the crowd can be composed of very tall people or children and the crowd size can range from 5 to 10 people, so that correctly stating the crowd turns out to be a difficult task to be solved with a single image, that is why we decided to figure out the problem by generating a registered image composed by several images at different angles, in figure \ref {frames} are shown some samples to perform the image registration. Stitching is the process of merging multiple images with fields of view that overlap to produce a registered image. %Most image stitching techniques require almost exact overlaps between images to produce splendid results. 
 The image stitching method can be divided into three main phases: image registration, calibration and mixing.
 
-\begin{itemize}
-	\item \textbf{Registration:} Involves pairing features in set of images or directly uses alignment methods to search for image alignments that minimize the sum of absolute differences between pixel overlays.
-	\item \textbf{Calibration:} Image calibration aims to minimize the differences between an ideal lens model and the combination of camera and lens that was used, optical defects such as distortions, different exposures between images, camera response and chromatic aberrations.
-	\item \textbf{Mixing:} Involves making improvements, including color adjustments. Colors are adjusted between images to set off for differences in exposure. The images are mixed together and the arrangement of the stitching line is done to minimize the visibility of the joints between the images.
-\end{itemize}
-
+%\begin{itemize}
+%	\item \textbf{Registration:}% Involves pairing features in set of images or directly uses alignment methods to search for image alignments that minimize the sum of absolute differences between pixel overlays.
+%	\item \textbf{Calibration:} %Image calibration aims to minimize the differences between an ideal lens model and the combination of camera and lens that was used, optical defects such as distortions, different exposures between images, camera response and chromatic aberrations.
+%	\item \textbf{Mixing:} %Involves making improvements, including color adjustments. Colors are adjusted between images to set off for differences in exposure. The images are mixed together and the arrangement of the stitching line is done to minimize the visibility of the joints between the images.
+%\end{itemize}
+\begin {figure}[h]
+	\centering
+	\includegraphics[angle=0, height= 3cm, width=4cm]{Figures/pano3.png}
+	\includegraphics[angle=0, height= 3cm, width=4cm]{Figures/pano2.png}
+	\includegraphics[angle=0, height= 3cm, width=4cm]{Figures/pano1.png}
+	\caption{Frames Captured by the Robot at Different Angles.}
+	\label{frames}
+\end {figure}
 
 The first thing we do in our implementation is to convert the color images to grayscale images, then we use SURF \cite{surf} as a feature detector. The next step is to perform pairing of the detectors using FLANN \cite{flann}, we also execute a computation to obtain the maximum and minimum distances of the points of interest. We later found the homography matrix using RANSAC \cite{ransac}. Finally we combined the images using the homography matrix. All this process is done iteratively, first we start with two images, to the union of those two images we can join another and so on. Once we have the registered image, we work with it to compute the facial detection. The results are shown in figure \ref{pano_image}.
+
+
+
+
 
 \begin{figure}[h]
 	\centering
@@ -387,13 +398,13 @@ http://biorobotics.fi-p.unam.mx\\
 {\bf Team Members:}
 
 
-Jesus Savage, Reynaldo Martell, Marco Negrete, Julio Cruz, Jesus Cruz, 
+Jesus Savage, Reynaldo Martell, Hugo Estrada, Marco Negrete, Julio Cruz,
 
 
-Hugo Estrada, Jose Cruz, Edgar Vazquez, Jaime Marquez, Edgar Silva, 
+Jesus Cruz, Jose Cruz, Edgar Vazquez, Jaime Marquez, Edgar Silva, Manuel
 
 
-Manuel Pano, Luis Alvarez, Mauricio Matamoros\\
+Pano, Luis Alvarez, Mauricio Matamoros\\
 {\bf Description of Hardware:}
 
 Justina's Robotics Architecture (cf. section 2)\\
