@@ -24,22 +24,23 @@
 
 \begin{document}
 
-\title{Pumas@Home 2018 Team Description Paper
+\title{Pumas@Home 2019 Team Description Paper
 \thanks{Acknowledgment: This work was supported by PAPIIT-DGAPA UNAM under Grant IG100915}}
 \author{
 	Jesus Savage 
 	\and Reynaldo Martell 
 	\and Hugo Estrada 
-	\and Marco Negrete 
 	\and Julio Cruz 
-	\and Jesus Cruz
-	\and Jose Cruz
-	\and Edgar Vazquez
+	\and Marco Negrete 
+	%\and Jesus Cruz
+	%\and Jose Cruz
+	%\and Edgar Vazquez
 	\and Jaime Marquez
-	\and Edgar Silva
+	%\and Edgar Silva
 	\and Manuel Pano 
-	\and Luis Alvarez
-	\and Mauricio Matamoros
+	%\and Luis Alvarez
+	%\and Mauricio Matamoros
+	\and Julio Martinez
 }
 \institute{Bio-Robotics Laboratory, School of Engineering \\ National Autonomous University of Mexico \\
 \texttt{http://biorobotics.fi-p.unam.mx}}
@@ -51,7 +52,7 @@
 %%%%%%%%%%%%%
 \begin{abstract}
 
-This paper describes the service robot Justina of team Pumas that has participated in the @Home category of the RoboCup and RoCKIn, both of them international competitions; as well as our latest applied research. These competitions had influenced our architecture in the development of better systems for our service robots by developing algorithms to natural language understanding, facial detection through multiple images using RGB cameras and the sound source localization (SSL). 
+This paper describes the service robot Justina of team Pumas that has participated in the @Home category of the RoboCup and RoCKIn, both of them international competitions; as well as our latest applied research. These competitions had influenced our architecture in the development of better systems for our service robots by developing algorithms to natural language understanding and the flat-and-textureless object manipulation.
 In our robotics architecture, the VIrtual and Real roBOt sysTem (VIRBOT), the operation of service robots is divided into several subsystems, each of them has a specific functionality  that contributes to the final operation of the robot.
 By combining symbolic AI with digital signal processing techniques a good performance of a service robot is obtained.
 
@@ -65,7 +66,7 @@ By combining symbolic AI with digital signal processing techniques a good perfor
 
 Service robots are hardware and software systems that assist humans to perform daily tasks in complex environments, to achieve this: they have to be able to understand spoken or gesture commands from humans; to be able to avoid static and dynamic obstacles while navigating in known and unknown environments; to be able to recognize and to manipulate objects and performing several other tasks that a person might request. 
 
-Our team has been participated in the category @Home continuously since the start of this competition at the RoboCup in Bremen in 2006. Our team obtained the third place in Atlanta in 2007, and has reached the finals in 2014 and 2015, last year, in the RoboCup 2017, the team obtained the fourth place and got the award for the best in Speech Recognition and Natural Language Understanding.
+Our team has been participated in the category @Home continuously since the start of this competition at the RoboCup in Bremen in 2006. Our team obtained the  fourth place and got the award for the best in Speech Recognition and Natural Language Understanding in Nagoya in 2017, last year, in the RoboCup 2018, the team obtained the second place.
 
 The paper is organized as follows:
 section \ref{sec:background} enumerates the hardware and software components of our robot
@@ -76,17 +77,17 @@ laboratory; and finally, in section \ref{sec:conclusions}, the conclusions and f
 \section{Justina's Robotics Architecture}\label{sec:background}
 \subsection{Hardware Configuration}
 
-Our service robot Justina, see figure \ref{fig:justina}, has the following hardware configuration:\\
+Our service robot Justina, see figure \ref{fig:justina}, has the following components:\\
 
 \begin{wrapfigure}{r}{0.5\textwidth}
-	\includegraphics[angle=0, height=11cm, width=6cm]{Figures/justina_scheme.png}
+	\includegraphics[angle=0, height=10cm, width=6cm]{Figures/ImagenNuevaJustina.png}
   \caption{Robot Justina}
   \label{fig:justina}
 \end{wrapfigure}
 
 
 
-ACTUATORS:
+HARDWARE:
 
 \begin{itemize}
 	\item \textbf{Mobile base:} Omnidirectional through differential pair configuration and omnidirectional wheels. 
@@ -94,17 +95,15 @@ ACTUATORS:
 	\item \textbf{Head:} 2-DOF (Pan and tilt) built with Dynamixel servomotors.
 	\item \textbf{Torso:} 1-DOF (Elevation) through a worm screw and a configuration of gears. 
 	\item \textbf{Speakers:} Two speakers to generate synthetic speech.
-\end{itemize}
-
-SENSORS:
-
-\begin{itemize}
-	\item \textbf{RGB-D Camera:} Microsoft's Kinect sensor 
+	\item \textbf{RGB-D Camera:} Microsoft's Kinect sensor. 
 	\item \textbf{RGB Camera:} Logitech Pro C920 Full HD.
 	\item \textbf{Microphone:} Rode NTG2 directional microphone.
 	\item \textbf{Array of Microphones:} An array of four microphones to detect sound sources.
 	\item \textbf{Laser:} Hokuyo rangefinder URG-04LX-UG0.
+	\item \textbf{Embbeded System:} NVIDIA Jetson TX2 to image processing.
 \end{itemize}
+
+
 
 \subsection{Software Configuration}
 Our software configuration is based on the VIRBOT architecture \cite{virbot}, 
@@ -240,80 +239,75 @@ In the previous example, when the user says {\bf "Robot, please give this book t
 \end{itemize}
 
 All the information required for the actions planner to perform its operation is contained in the CD and knowledge data base. 
-Our system has been successfully tested in robotics competitions \cite{Savage}, as the RoboCup and RockIn 
+Our system has been described in  \cite{iros2017} and successfully tested in robotics competitions \cite{Savage}, as the RoboCup and RockIn 
 \cite{Robocup_2017}, in the category @Home.
 In RoboCup@Home 2017 our robot was awarded as the best in Speech and Natural Language Understanding.
 
 
 
-\subsection{Facial detection through multiple images using RGB cameras}\label{subsec:FacialReco}
-The facial detection is one of the most primordial tasks that a service robot must be able to perform, proof of them is that in the RoboCup@Home there is a test in which the robot must correctly state the number of people who make up a crowd, these people can  be stand, sit and even lie down, the crowd can be composed of very tall people or children and the crowd size can range from 5 to 10 people, so that correctly stating the crowd turns out to be a difficult task to be solved with a single image, that is why we decided to figure out the problem by generating a registered image composed by several images at different angles, in figure \ref {frames} are shown some samples to perform the image registration. Stitching is the process of merging multiple images with fields of view that overlap to produce a registered image. %Most image stitching techniques require almost exact overlaps between images to produce splendid results. 
-The image stitching method can be divided into three main phases: image registration, calibration and mixing.
+\subsection{Intelligent flat-and-textureless object manipulation in Service Robots}\label{subsec:ObjectManip}
+Grasping objects from a table is a common task for Service Robots. Robots mounted with sensors suach as RGB-D cameras are able to detect the dominant plane, cluster point clouds on the plane and analyze them in order to detect the objects on it and determine the best strategy to manipulate the objects as in \cite{graspingNovelObjects} and \cite{objectDetection}. However, when the objects lack texture and or volume (i.e. flat objects), the manipulation
+task becomes more challenging.
 
-%\begin{itemize}
-%	\item \textbf{Registration:}% Involves pairing features in set of images or directly uses alignment methods to search for image alignments that minimize the sum of absolute differences between pixel overlays.
-%	\item \textbf{Calibration:} %Image calibration aims to minimize the differences between an ideal lens model and the combination of camera and lens that was used, optical defects such as distortions, different exposures between images, camera response and chromatic aberrations.
-%	\item \textbf{Mixing:} %Involves making improvements, including color adjustments. Colors are adjusted between images to set off for differences in exposure. The images are mixed together and the arrangement of the stitching line is done to minimize the visibility of the joints between the images.
-%\end{itemize}
-\begin {figure}[h]
+
+In the 2018 edition of Robocup@Home, one of the tests was the Procter \& Gamble (TM) Dishwasher Challenge (PGDC)in which they have to remove all objects from a table and place them into a dishwasher \cite{rulebook2018}. The set of objects
+that were used during the test are made of plastic, without any visual pattern on them but colours with high contrast, as shown in Figure \ref{fig:rgbview}. Besides, the objects’ surface is very reflective provoking a significant variation in colour. In consequence, the information sensed by the RGB-D camera results noisy and the objects seem to belong to the table, as
+shown in Figure \ref{fig:depthview}.
+
+\begin{figure}[ht]
 	\centering
-	\includegraphics[angle=0, height= 3cm, width=4cm]{Figures/pano3.png}
-	\includegraphics[angle=0, height= 3cm, width=4cm]{Figures/pano2.png}
-	\includegraphics[angle=0, height= 3cm, width=4cm]{Figures/pano1.png}
-	\caption{Frames Captured by the Robot at Different Angles.}
-	\label{frames}
-\end {figure}
-
-The first thing we do in our implementation is to convert the color images to grayscale images, then we use SURF \cite{surf} as a feature detector. The next step is to perform pairing of the detectors using FLANN \cite{flann}, we also execute a computation to obtain the maximum and minimum distances of the points of interest. We later found the homography matrix using RANSAC \cite{ransac}. Finally we combined the images using the homography matrix. All this process is done iteratively, first we start with two images, to the union of those two images we can join another and so on. Once we have the registered image, we work with it to compute the facial detection. The results are shown in figure \ref{pano_image}.
-
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[angle=0, height=3.7cm, width=8cm]{Figures/sceneComplete_pano.png}
-	\caption{Facial Detection on a Registered Image.}
-	\label{pano_image}
+	\begin{subfigure}{.225\textwidth}
+  		\centering
+  		\includegraphics[width=1\textwidth]{{Figures/training_set.jpg}}
+        \caption{}
+  		\label{fig:rgbview}
+	\end{subfigure}
+	\begin{subfigure}{.225\textwidth}
+  		\centering
+  		\includegraphics[width=1\textwidth]{{Figures/training0.jpg}}
+        \caption{}
+  		\label{fig:depthview}
+	\end{subfigure}
+	\caption{a) Tableware and cutlery objects used in the RoboCup@Home's P\&G Challenge and b) table setup 3D view from an RGBD camera. It can be observed that the reconstructed scene presents some errors due to sensor noise, varying illumination conditions and high object reflectance.}
+	\label{fig:rgbdview}
 \end{figure}
+
+We present our solution to the flat and textureless object detection and recognition problem. We first use colour features in the detection process and then extract the geometry properties using the point cloud to describe them. This information also results useful in the manipulation process.
+
+For background subtraction, we find the range of values in each channel on the HSV colour space for all objects and a raw segmentation mask is obtained where morphological operations of closing and dilation are applied to close the gaps where segmentation was wrong. To deal with cases where objects present significant illumination changes, a convex hull operation is applied as the final step in the segmentation process. Finally, we obtain an RGB mask and a 2D bounding box per object.
+
+We then categorise objects into four different classes, namely glass, dish, bowl, and cutlery, by normalising the image with respect to the average depth and then extracting the area in the RGB image and the number of points and the eigenvectors from the point cloud.  An example of the classification result is shown in Figure \ref{fig:Classification}.
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{.425\textwidth}
+  		\centering
+  		\includegraphics[width=1\textwidth]{{Figures/Segmentation.png}}
+        \caption{}
+  		\label{fig:seg}
+	\end{subfigure}
+	\begin{subfigure}{.425\textwidth}
+  		\centering
+  		\includegraphics[width=1\textwidth]{{Figures/Classification.png}}
+        \caption{}
+  		\label{fig:class}
+	\end{subfigure}
+	\caption{a) Typical output after object detection using colour
+features b) Classification result using 3D information to a setup given.}
+	\label{fig:Classification}
+\end{figure}
+
+
+In our implementation, after the objects on the table are detected and recognised, this information is sent through ROS messages to the action planner module. The message contains information about each object, such as: a) related to the point cloud: eigenvalues, eigenvector, size, nearest point and centre point in robot coordinates, b) related to the image: position of top left corner, width and height of the bounding box, c) related to the object: centroid, roll, pitch and yaw manipulation angles, and a priority constant (this variable is set given the grasping ability of a given object with the robot hand -- the priority, in increasing order, is as follows: dish, cutlery, bowl and glass).  
+
+Due to the size and shape of the objects in this test, we use a feedback strategy based on the visual information to verify whether the object was taken.
+
+In the PGDC test, robot "Justina" obtained a good performance in the manipulation tasks, as we can describe in \cite{iros2018} where the robot was able to grasp 3 out of 4 objects that the robot attempted to manipulate, two of them in the first attempt, and the other in the second attempt after visual feedback confirmation was received.
 
 
  
 
 
-\subsection{Sound Source Localization}\label{subsec:SoundSource}
 
-\begin{wrapfigure}{r}{0.4\textwidth}
-	\includegraphics[angle=0, height= 4cm, width= 4.5cm]{Figures/array.png}
-	\caption{Equilateral triangular arrangement \cite{hioka2003}.}
-	\label{F_array}
-\end{wrapfigure}
-The Sound Source Localization (SSL) is performed by estimating the direction of arrival (DOA) of the voice signals of people who are in unknown positions around the robot. Considering the DOA estimate is required over an angular range of $[0,2\pi)$, a triangular arrangement of microphones was used, as shown in figure \ref{F_array}.
-
-
-
-For the DOA estimation it is crucial to obtain the phase information present in the signals of each of the microphones \cite{karbasi2006}. In order to obtain accurate information about the signal offset in each of the microphones, an MCU was used for the acquisition and processing of the signals, the MCU used is the TMS320F28377S, which has two 12-bit analog-to-digital (ADC) converters, each of these ADCs has seven channels with independent conversion starts (SOC), with these ADCs can be obtained up to 1.1 MSPS \cite{DTASHT2}. The DOA calculation is performed using the cross-power spectral density (CPSD) between pairs of microphones, the CPSD between signals  $x_1$ and $x_2$ is obtained as:
-\begin{equation}
-	G_{12}(\omega) = X_1^{*}(\omega) X_2(\omega) = P(\omega)e^{-j\omega \tau}
-\end{equation} 
-
-being $X_1(\omega)$ and $X_2(\omega)$ the Fourier transforms (FT) of $x_1(n)$ y $x_2(n)$, respectively.%i.e., if you have two signals $x_1(n)$ and $x_2(n)$ defined as:
-%\begin{equation}
-%	x_1(n) = s(n)+\eta_1(n)
-%\end{equation}
-%
-%\begin{equation}
-%	x_2(n) = s(n-\tau)+\eta_2(n)
-%\end{equation}
-
-%where $s(n)$ is the signal of interest, $\eta_1(n)$ and $\eta_2(n)$ are uncorrelated noise signals, the CPSD between signals $x_1$ and $x_2$ is obtained as:
-In the case of the triangular arrangement, there will be three pairs of microphones, so there are three CPSDs. Using the three previous CPSDs, the integrated cross-spectrum can be obtained as:
-\begin{equation} \label{eq_doa}
-	G_{\phi,\theta}^{(\omega)} (\theta,\phi) = G_{x2y}^{(\omega)}(\phi)G_{xy}^{(\omega)}(\theta)+G_{yz}^{(\omega)}(\theta)+G_{z2y}^{(\omega)}(\phi)G_{zx}^{(\omega)}(\theta)
-\end{equation}
-
-
-The above equation has its maximum when $\phi=\theta$, In this way, the angle of arrival is located at the angle $\phi$ that maximizes the equation (\ref{eq_doa}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%  CONCLUSION AND FUTURE WORK  %%%
@@ -322,9 +316,9 @@ The above equation has its maximum when $\phi=\theta$, In this way, the angle of
 \section{Conclusions and future work}\label{sec:conclusions}
 It is clear, that during the 10 years in which our team Pumas has been participated in the RoboCup and 2 years in the Rockin \cite{Robocup_2017} in the category @Home, the performance and research developed, in the service robot area, in our laboratory has been improved considerably.
 Our service robot architecture, the VIRBOT, has been evolving according to the requirement that these robotics competitions asked each year.
-In these years, the full system has been improved, both in hardware and software, having reliable performance and showing promising results. Particularly, this year, we have a new omnidirectional mobile base for navigation and a new torso. 
+In these years, the full system has been improved, both in hardware and software, having reliable performance and showing promising results. Particularly, this year, we add an Embedded Develotment kit \cite{jetson} to perform GPU's solutions.
 In terms of software, we have change the way of conceiving the tests of the competition: from static state machines to inferred action planning generated by a rule based system. 
-As for future work, the task of following humans will be improved by combining vision algorithms using the Kinect sensor and our current system tha use a laser. Also, it will be explored topics as the memory and enviromental reasoning of the robot, in order to explain things that hapenned in the past. Moreover we are working in a mask with lights that serves as an interface to express different emotions.
+As for future work, we are working in a new configuration for the omnidirectional base to improve the navigation performance. Also, we will explore new topics as the memory and enviromental reasoning of the robot, in order to explain things that hapenned in the past.
 \bibliographystyle{unsrt}
 \bibliography{bibliography,justina}
 
@@ -341,6 +335,8 @@ pp 512-519, Springer Berlin Heidelberg, 2007.
 \bibitem{Schank}
 {\em Conceptual dependency and its descendants}, Steven L. Lytinen, Computers \& Mathematics with Applications, 1992.
 
+\bibitem{iros2017}\textit{The Use of Expert Systems for Semantic Reasoning in Service Robots}, Jesus Savage, Julio Cruz, Reynaldo Martell, Hugo Leon, Marco Negrete, and Jesus Cruz, 2nd Workshop on Semantic Policy and Action Representations for Autonomous Robots (SPAR), IROS 2017
+
 \bibitem{Savage}
 {\em The Role of Robotics Competitions for the Development of Service Robots}, 
  Jesus Savage, Marco Negrete, Mauricio Matamoros, Jesus Cruz,
@@ -351,22 +347,18 @@ IJCAI'16, Workshop on Autonomous Mobile Service Robots, New York, USA, 2016.
 \\
 {\em Rockin} http://rockinrobotchallenge.eu/home.php
 
-\bibitem{surf}
-{\em SURF: Speeded Up Robust Features}, Herbert B., Andreas E., Tinne T., Luc Van G., Computer Vision and Image Understanding (CVIU), 110(3): 346-359, 2008.
+\bibitem{graspingNovelObjects}\textit{Grasping novel objects with depth segmentation}, D. Rao, Q. V. Le, T. Phoka, M. Quigley, A. Sudsang, and A. Y. Ng, 2010 IEEE/RSJInternational Conference on Intelligent Robots and Systems, pp. 2578–2585, Oct 2010.
 
-\bibitem{flann}
-{\em Fast Approximate Nearest Neighbors with Automatic Algorithm Configuration}, Marius Muja and David G. Lowe, International Conference on Computer Vision Theory and Applications (VISAPP'09), 2009.
+\bibitem{objectDetection}\textit{Object detection
+based on plane segmentation and features matching for a service
+robot}, A. J. R. Neves, R. Garcia, P. Dias, and A. Trifan, International Journal of Computer, Electrical, Automation, Control and Information Engineering, vol. 10, no. 4, pp. 775 – 782, 2016.
 
-\bibitem{ransac}
-{\em  Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography}, Fischler, Martin A. and Bolles, Robert C., Commun. ACM, 24(6): 381-395, 1981.
+\bibitem{rulebook2018}\textit{Robocup@home 2018: Rules and regulations}, M. Matamoros, C. Rascon, J. Hart, D. Holz, and L. van Beek, 2018
 
-\bibitem{hioka2003}\textit{DOA estimation of speech signal using equilateral-triangular microphone array}, Yusuke Hioka and Nozomu Hamada, 8th European Conference on Speech Communication and Technology (EUROSPEECH 2003), 2003.
+\bibitem{iros2018}\textit{Intelligent flat-and-textureless object manipulation in Service Robots}, A. Ortega, H. Estrada, E. Vázquez, R. Martell, J. Hernández, J. Cruz, E. Silva, J. Savage, and L. Contreras, IROS 2018 Workshop "Towards Robots that Exhibit Manipulation Intelligence", 2018.
 
-\bibitem{karbasi2006}\textit{A DOA estimation method for an arbitrary triangular microphone arrangement}, Amin Karbasi and Akihiki Sugiyama, 14th European Signal processing Conference (EUSIPCO 2006), 2006.
-
-\bibitem{DTASHT2} 
-{\em TMS320F2837xS Data Sheet} http://www.ti.com/lit/ds/sprs881b/sprs881b.pdf
-
+\bibitem{jetson}
+{\em Jetson} https://developer.nvidia.com/embedded/buy/jetson-tx2-devkit
 
 \end{thebibliography}
 
@@ -398,13 +390,10 @@ http://biorobotics.fi-p.unam.mx\\
 {\bf Team Members:}
 
 
-Jesus Savage, Reynaldo Martell, Hugo Estrada, Marco Negrete, Julio Cruz,
+Jesus Savage, Reynaldo Martell, Hugo Estrada, Julio Cruz, Marco Negrete,
 
 
-Jesus Cruz, Jose Cruz, Edgar Vazquez, Jaime Marquez, Edgar Silva, Manuel
-
-
-Pano, Luis Alvarez, Mauricio Matamoros\\
+Jaime Marquez, Manuel Pano, Julio Martinez\\
 {\bf Description of Hardware:}
 
 Justina's Robotics Architecture (cf. section 2)\\
@@ -420,10 +409,10 @@ https://github.com/RobotJustina/JUSTINA\\
    Middleware & ROS Kinetic; Blackboard\\
    SLAM & ROS Gmapping\\
    Navigation & Navigation using Kinect + Ocupancy grid + A*\\
-   Object Recognition & Histogram Disparity\\
+   Object Recognition & Histogram Disparity + YOLO\\
    Face Detection & Haar Cascades\\
-   People Detection & OpenPoses\\
-   Face Recognition & EigenFaces\\
+   People Detection & OpenPoses + YOLO\\
+   Face Recognition & Facenet + YOLO\\
    Speech Synthesis & Loquendo\\
    Speech Recognition & Microsoft Speech Recognition\\
    Inference Engine & CLIPS\\
