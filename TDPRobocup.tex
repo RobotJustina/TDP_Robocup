@@ -24,7 +24,7 @@
 
 \begin{document}
 
-\title{Pumas@Home 2019 Team Description Paper
+\title{Pumas@Home 2020 Team Description Paper
 \thanks{Acknowledgment: This work was supported by PAPIIT-DGAPA UNAM under Grant IG100818}}
 \author{
 	Jesus Savage 
@@ -32,16 +32,16 @@
 	\and Hugo Estrada 
 	\and Julio Cruz 
 	\and Marco Negrete 
-	%\and Jesus Cruz
-	%\and Jose Cruz
+	\and Diego Cordero
 	%\and Edgar Vazquez
 	%\and Edgar Silva
-	\and Jaime Marquez
 	\and Manuel Pano
-	%\and Luis Alvarez
 	\and Julio Martinez
-	\and Jesus Cruz
-	\and Jose Cruz
+	\and Luis Gonzalez
+	%\and Luis Alvarez
+	%\and Jesus Cruz
+	%\and Jose Cruz
+	%\and Jaime Marquez
 }
 \institute{Bio-Robotics Laboratory, School of Engineering \\ National Autonomous University of Mexico \\
 \texttt{http://biorobotics.fi-p.unam.mx}}
@@ -67,42 +67,43 @@ By combining symbolic AI with digital signal processing techniques a good perfor
 
 Service robots are hardware and software systems that assist humans to perform daily tasks in complex environments, to achieve this: they have to be able to understand spoken or gesture commands from humans; to be able to avoid static and dynamic obstacles while navigating in known and unknown environments; to be able to recognize and to manipulate objects and performing several other tasks that a person might request. 
 
-Our team has been participated in the category @Home continuously since the start of this competition at the RoboCup in Bremen in 2006. Our team obtained the  fourth place and got the award for the best in Speech Recognition and Natural Language Understanding in Nagoya in 2017, last year, in the RoboCup 2018, the team obtained the second place.
+Our team has been participated in the category @Home continuously since the start of this competition at the RoboCup in Bremen in 2006. Our team obtained the  fourth place and got the award for the best in Speech Recognition and Natural Language Understanding in Nagoya in 2017, in the last years, in the RoboCup 2018 and 2019, the team obtained the second place.
 
 The paper is organized as follows:
-section \ref{sec:background} enumerates the hardware and software components of our robot
+section \ref{sec:background} enumerates the software components of our robot
 Justina; section \ref{sec:CurrentResearch}  presents overview of the latest research developments in our
-laboratory; and finally, in section \ref{sec:conclusions}, the conclusions and future work are given.
+laboratory; section \ref{sec:conclusions}, the conclusions and future work are given;
+and finally, in Appendix \ref{sec:appendix}, the hardware components of our robot Justina.
 
 
 \section{Justina's Robotics Architecture}\label{sec:background}
-\subsection{Hardware Configuration}
+%\subsection{Hardware Configuration}
 
-Our service robot Justina, see figure \ref{fig:justina}, has the following components:\\
+%Our service robot Justina, see figure \ref{fig:justina}, has the following components:\\
 
-\begin{wrapfigure}{r}{0.5\textwidth}
-	\includegraphics[angle=0, height=10.5cm, width=6.5cm]{Figures/justinaEsquema.png}
-  \caption{Robot Justina}
-  \label{fig:justina}
-\end{wrapfigure}
+%\begin{wrapfigure}{r}{0.5\textwidth}
+%	\includegraphics[angle=0, height=10.5cm, width=6.5cm]{Figures/justinaEsquema.png}
+%  \caption{Robot Justina}
+%  \label{fig:justina}
+%\end{wrapfigure}
 
 
 
-HARDWARE:
+%HARDWARE:
 
-\begin{itemize}
-	\item \textbf{Mobile base:} Omnidirectional through differential pair configuration and omnidirectional wheels. 
-	\item \textbf{Manipulators:} 2 x 7-DOF anthropomorphic arms with 10 Dynamixel servomotors each.
-	\item \textbf{Head:} 2-DOF (Pan and tilt) built with Dynamixel servomotors.
-	\item \textbf{Torso:} 1-DOF (Elevation) through a worm screw and a configuration of gears. 
-	\item \textbf{Speakers:} Two speakers to generate synthetic speech.
-	\item \textbf{RGB-D Camera:} Microsoft's Kinect sensor. 
-	\item \textbf{RGB Camera:} Logitech Pro C920 Full HD.
-	\item \textbf{Microphone:} Rode NTG2 directional microphone.
-	\item \textbf{Array of Microphones:} An array of four microphones to detect sound sources.
-	\item \textbf{Laser:} Hokuyo rangefinder URG-04LX-UG0.
-	\item \textbf{Embedded System:} NVIDIA Jetson TX2 to image processing.
-\end{itemize}
+%\begin{itemize}
+%	\item \textbf{Mobile base:} Omnidirectional through differential pair configuration and omnidirectional wheels. 
+%	\item \textbf{Manipulators:} 2 x 7-DOF anthropomorphic arms with 10 Dynamixel servomotors each.
+%	\item \textbf{Head:} 2-DOF (Pan and tilt) built with Dynamixel servomotors.
+%	\item \textbf{Torso:} 1-DOF (Elevation) through a worm screw and a configuration of gears. 
+%	\item \textbf{Speakers:} Two speakers to generate synthetic speech.
+%	\item \textbf{RGB-D Camera:} Microsoft's Kinect sensor. 
+%	\item \textbf{RGB Camera:} Logitech Pro C920 Full HD.
+%	\item \textbf{Microphone:} Rode NTG2 directional microphone.
+%	\item \textbf{Array of Microphones:} An array of four microphones to detect sound sources.
+%	\item \textbf{Laser:} Hokuyo rangefinder URG-04LX-UG0.
+%	\item \textbf{Embedded System:} NVIDIA Jetson TX2 to image processing.
+%\end{itemize}
 
 
 
@@ -305,6 +306,17 @@ Due to the size and shape of the objects in this test, we use a feedback strateg
 In the PGDC test, robot "Justina" obtained a good performance in the manipulation tasks, as we can describe in \cite{iros2018} where the robot was able to grasp 3 out of 4 objects that the robot attempted to manipulate, two of them in the first attempt, and the other in the second attempt after visual feedback confirmation was received.
 
 
+%%%%%%%%%
+%%% LUIS brazos 
+%%% YOLO objetos sillas
+%%% Torso 
+%%% FaceRecog entrenar rostros y generos
+%%% Monitor
+%%% Reconocimiento de objetos jefe Diego
+%%% P&G 
+%%% alexa
+
+
  
 
 
@@ -324,7 +336,6 @@ As for future work, we are working in a new configuration for the omnidirectiona
 \bibliography{bibliography,justina}
 
 \begin{thebibliography}{1}
-
 
 \bibitem{virbot}
 {\em ViRbot: A System for the Operation of Mobile Robots}, Savage, Jesus and et al, RoboCup 2007: Robot Soccer World Cup XI,
@@ -421,6 +432,38 @@ https://github.com/RobotJustina/JUSTINA\\
  \hline  
  \end{tabular}
 	
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  APPENDIX  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\section{Appendix}\label{sec:appendix}
+\subsection{Hardware Configuration}
+
+Our service robot Justina, see figure \ref{fig:justina}, has the following components:\\
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\includegraphics[angle=0, height=10.5cm, width=6.5cm]{Figures/justinaEsquema.png}
+  \caption{Robot Justina}
+  \label{fig:justina}
+\end{wrapfigure}
+
+
+
+HARDWARE:
+
+\begin{itemize}
+	\item \textbf{Mobile base:} Omnidirectional through differential pair configuration and omnidirectional wheels. 
+	\item \textbf{Manipulators:} 2 x 7-DOF anthropomorphic arms with 10 Dynamixel servomotors each.
+	\item \textbf{Head:} 2-DOF (Pan and tilt) built with Dynamixel servomotors.
+	\item \textbf{Torso:} 1-DOF (Elevation) through a worm screw and a configuration of gears. 
+	\item \textbf{Speakers:} Two speakers to generate synthetic speech.
+	\item \textbf{RGB-D Camera:} Microsoft's Kinect sensor. 
+	\item \textbf{RGB Camera:} Logitech Pro C920 Full HD.
+	\item \textbf{Microphone:} Rode NTG2 directional microphone.
+	\item \textbf{Array of Microphones:} An array of four microphones to detect sound sources.
+	\item \textbf{Laser:} Hokuyo rangefinder URG-04LX-UG0.
+	\item \textbf{Embedded System:} NVIDIA Jetson TX2 to image processing.
+\end{itemize}
 
 
 \end{document} 
