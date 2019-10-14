@@ -246,65 +246,52 @@ Our system has been described in  \cite{iros2017} and successfully tested in rob
 In RoboCup@Home 2017 our robot was awarded as the best in Speech and Natural Language Understanding.
 
 
+\subsection{Human interaction with multiple service robots}\label{subsec:Alexa}
 
-\subsection{Intelligent flat-and-textureless object manipulation in Service Robots}\label{subsec:ObjectManip}
-Grasping objects from a table is a common task for Service Robots. Robots mounted with sensors suach as RGB-D cameras are able to detect the dominant plane, cluster point clouds on the plane and analyze them in order to detect the objects on it and determine the best strategy to manipulate the objects as in \cite{graspingNovelObjects} and \cite{objectDetection}. However, when the objects lack texture and or volume (i.e. flat objects), the manipulation
-task becomes more challenging.
+In our laboratory we have the vision that in the future we will not only have a service robot in our homes, 
+but a variety of them performing specific tasks. 
+And one of the problems we face is to be able to communicate with all these robots regardless of where the user and the robot are.
+The solution we propose is to use smart home devices to send the users requests to the service robots, see figure \ref{fig:alexahome}. 
+Specifically we are using Alexa, 
+the voice service that Amazon offers.
 
-
-In the 2018 edition of Robocup@Home, one of the tests was the Procter \& Gamble (TM) Dishwasher Challenge (PGDC)in which they have to remove all objects from a table and place them into a dishwasher \cite{rulebook2018}. The set of objects
-that were used during the test are made of plastic, without any visual pattern on them but colours with high contrast, as shown in Figure \ref{fig:rgbview}. Besides, the objects’ surface is very reflective provoking a significant variation in colour. In consequence, the information sensed by the RGB-D camera results noisy and the objects seem to belong to the table, as
-shown in Figure \ref{fig:depthview}.
-
-\begin{figure}[ht]
+\begin{figure}[h]
 	\centering
-	\begin{subfigure}{.225\textwidth}
-  		\centering
-  		\includegraphics[width=1\textwidth]{{Figures/training_set.jpg}}
-        \caption{}
-  		\label{fig:rgbview}
-	\end{subfigure}
-	\begin{subfigure}{.225\textwidth}
-  		\centering
-  		\includegraphics[width=1\textwidth]{{Figures/training0.jpg}}
-        \caption{}
-  		\label{fig:depthview}
-	\end{subfigure}
-	\caption{a) Tableware and cutlery objects used in the RoboCup@Home's P\&G Challenge and b) table setup 3D view from an RGBD camera. It can be observed that the reconstructed scene presents some errors due to sensor noise, varying illumination conditions and high object reflectance.}
-	\label{fig:rgbdview}
+	\includegraphics[angle=0, height=7cm, width=7cm]{Figures/alexa1.png}
+	\caption{Human interaction with multiple robots trough intelligent devices.}
+	\label{fig:alexahome}
 \end{figure}
 
-We present our solution to the flat and textureless object detection and recognition problem. We first use colour features in the detection process and then extract the geometry properties using the point cloud to describe them. This information also results useful in the manipulation process.
+\subsubsection{Alexa integration in Justina's environment.} Alexa is an Amazon service for automatic language recognition and natural language understanding, allowing you to interact with different devices provided by this same company. However, it is also possible to extend its functionalities to third parties, so it has been possible to integrate it into the JUSTINA robot. Alexa is made up of two main elements:
+\vspace{.01 in}
 
-For background subtraction, we find the range of values in each channel on the HSV colour space for all objects and a raw segmentation mask is obtained where morphological operations of closing and dilation are applied to close the gaps where segmentation was wrong. To deal with cases where objects present significant illumination changes, a convex hull operation is applied as the final step in the segmentation process. Finally, we obtain an RGB mask and a 2D bounding box per object.
+	Amazon Echo - Alexa's end device to be listening the user voice, has an array of microphones and speakers.
+\vspace{.01 in}
 
-We then categorise objects into four different classes, namely glass, dish, bowl, and cutlery, by normalising the image with respect to the average depth and then extracting the area in the RGB image and the number of points and the eigenvectors from the point cloud.  An example of the classification result is shown in Figure \ref{fig:Classification}.
-\begin{figure}[ht]
+	Alexa Voice Service (AVS) - Service for voice recognition.
+\vspace{.01 in}
+
+\subsubsection{AVS request / response handling.}
+
+The communication between Alexa and Justina is represented in figure \ref{fig:alexaconexion} and 
+consists of a local area network, 
+where an echo device is waiting for a user's voice command. 
+Then the voice command is sent to the AVS for recognition, 
+only if the command is acknowledged, 
+a request is created and sent back to the local area network. 
+To attend the request generated by the AVS a web service was created with the detail of the request (Each request is represented in JSON format). 
+Finally a CD, such as PTRANS or ATRANS, is generated and sent to Justina for execute the user's command voice.
+\begin{figure}[h]
 	\centering
-	\begin{subfigure}{.425\textwidth}
-  		\centering
-  		\includegraphics[width=1\textwidth]{{Figures/Segmentation.png}}
-        \caption{}
-  		\label{fig:seg}
-	\end{subfigure}
-	\begin{subfigure}{.425\textwidth}
-  		\centering
-  		\includegraphics[width=1\textwidth]{{Figures/Classification.png}}
-        \caption{}
-  		\label{fig:class}
-	\end{subfigure}
-	\caption{a) Typical output after object detection using colour
-features b) Classification result using 3D information to a setup given.}
-	\label{fig:Classification}
+	\includegraphics[angle=0, height=5cm, width=5cm]{Figures/alexa2.png}
+	\caption{Block digram of Justina and alexa comunication.}
+	\label{fig:alexaconexion}
 \end{figure}
 
-
-In our implementation, after the objects on the table are detected and recognised, this information is sent through ROS messages to the action planner module. The message contains information about each object, such as: a) related to the point cloud: eigenvalues, eigenvector, size, nearest point and centre point in robot coordinates, b) related to the image: position of top left corner, width and height of the bounding box, c) related to the object: centroid, roll, pitch and yaw manipulation angles, and a priority constant (this variable is set given the grasping ability of a given object with the robot hand -- the priority, in increasing order, is as follows: dish, cutlery, bowl and glass).  
-
-Due to the size and shape of the objects in this test, we use a feedback strategy based on the visual information to verify whether the object was taken.
-
-In the PGDC test, robot "Justina" obtained a good performance in the manipulation tasks, as we can describe in \cite{iros2018} where the robot was able to grasp 3 out of 4 objects that the robot attempted to manipulate, two of them in the first attempt, and the other in the second attempt after visual feedback confirmation was received.
-
+To use other robots through this system, 
+it is possible to create a web service node for each of them. 
+As in the final of RoboCup 2019, where we present Justina and Takeshi (toyota robot) working together, 
+we ask Takeshi to attend the entrance and Justina serve drinks for the guests.
 
 %%%%%%%%%
 %%% LUIS brazos 
