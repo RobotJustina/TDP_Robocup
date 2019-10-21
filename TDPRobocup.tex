@@ -54,7 +54,7 @@
 %%%%%%%%%%%%%
 \begin{abstract}
 
-This paper describes the service robot Justina of team Pumas that has participated in the @Home category of the RoboCup and RoCKIn, both of them international competitions; as well as our latest applied research. These competitions had influenced our architecture in the development of better systems for our service robots by developing algorithms to natural language understanding and the flat-and-textureless object manipulation.
+This paper describes the service robot Justina of team Pumas that has participated in the @Home (OPL) category of the RoboCup and RoCKIn, both of them international competitions; as well as our latest applied research. These competitions had influenced our architecture in the development of better systems for our service robots by developing algorithms to natural language understanding and Human-Robot interaction using multiple service robots.
 In our robotics architecture, the VIrtual and Real roBOt sysTem (VIRBOT), the operation of service robots is divided into several subsystems, each of them has a specific functionality  that contributes to the final operation of the robot.
 By combining symbolic AI with digital signal processing techniques a good performance of a service robot is obtained.
 
@@ -71,12 +71,10 @@ Service robots are hardware and software systems that assist humans to perform d
 Our team has been participated in the category @Home continuously since the start of this competition at the RoboCup in Bremen in 2006. Our team obtained the  fourth place and got the award for the best in Speech Recognition and Natural Language Understanding in Nagoya in 2017, in the last years, in the RoboCup 2018 and 2019, the team obtained the second place.
 
 The paper is organized as follows:
-section \ref{sec:background} enumerates the software components of our robot
-Justina; section \ref{sec:CurrentResearch}  presents overview of the latest research developments in our
-laboratory; section \ref{sec:contributions} is for our contributions for RoboCup@Home;
+the section \ref{sec:background} enumerates the software description of our robot
+Justina; the section \ref{sec:CurrentResearch}  presents  an overview of the latest research developments in our laboratory; the section \ref{sec:contributions} is about our contributions for RoboCup @Home;
 in section \ref{sec:conclusions}, the conclusions and future work are given;
-finally, in Appendix \ref{sec:appendix} and \ref{sec:TeamInfo}, you can find the hardware components of our robot Justina 
-and Information about Team Pumas.
+finally, in Appendix \ref{sec:appendix} and \ref{sec:TeamInfo}, you can find the hardware description of our robot Justina and the Information about Team Pumas.
 
 
 \section{Justina's Robotics Architecture}\label{sec:background}
@@ -249,11 +247,10 @@ Our system has been described in  \cite{iros2017} and successfully tested in rob
 In RoboCup@Home 2017 our robot was awarded as the best in Speech and Natural Language Understanding.
 
 
-\subsection{Human interaction with multiple service robots}\label{subsec:Alexa}
+\subsection{Human-Robot interaction using multiple service robots}\label{subsec:Alexa}
 
 In our laboratory we have the vision that in the future we will not only have a service robot in our homes, 
-but a variety of them performing specific tasks. 
-And one of the problems we face is to be able to communicate with all these robots regardless of where the user and the robot are.
+but a variety of them performing specific tasks. The first problem to solve is find the way to communicate with all these robots regardless of where the user and the robot are.
 The solution we propose is to use smart home devices to send the users requests to the service robots, see figure \ref{fig:alexahome}. 
 Specifically we are using Alexa, 
 the voice service that Amazon offers.
@@ -266,13 +263,11 @@ the voice service that Amazon offers.
 \end{figure}
 
 \subsubsection{Alexa integration in Justina's environment.} Alexa is an Amazon service for automatic language recognition and natural language understanding, allowing you to interact with different devices provided by this same company. However, it is also possible to extend its functionalities to third parties, so it has been possible to integrate it into the JUSTINA robot. Alexa is made up of two main elements:
-\vspace{.01 in}
+\begin{itemize}
+	 \item Amazon Echo - Is an array of microphones and speakers that Alexa uses as end device to be listening the user voice.
+	 \item Alexa Voice Service (AVS) - Is a service for voice recognition \cite{avs}.
+\end{itemize}
 
-	Amazon Echo - Alexa's end device to be listening the user voice, has an array of microphones and speakers.
-\vspace{.01 in}
-
-	Alexa Voice Service (AVS) - Service for voice recognition \cite{avs}.
-\vspace{.01 in}
 
 \subsubsection{AVS request / response handling.}
 
@@ -315,11 +310,9 @@ it is possible to create a web service node for each of them.
 As previously stated, 
 our vision is to have different robots inside the home performing independent or joint tasks, 
 where robots can communicate with each other and with the user, 
- also robots can interact with different smart devices to perform another tasks such as turning on lights, play music, turn on the weather, etc.
-All with the objective of dividing the work and offering the user more options to complete the daily tasks at home.
-We could show some of this work in the fnal of the RoboCup@Home Open Platform League 2019, where Justina and Takeshi worked together, 
-in a party atmosphere 
-Takeshi was asked to attend the entrance while Justina served drinks for the gests.
+ also robots can interact with different smart devices to perform another tasks such as turn on lights, play music, turn on appliances, open or close doors, etc.
+The main purpose is to divide the work and offer to the user more options to complete the daily tasks at home.
+We showed some of this work in the fnal of the RoboCup@Home Open Platform League 2019, where Justina and Takeshi worked together, in a party atmosphere, Takeshi was in charge of receiving guests at the entrance while Justina served drinks for the guests.
 
 
 
