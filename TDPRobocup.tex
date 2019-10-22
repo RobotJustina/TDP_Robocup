@@ -315,6 +315,32 @@ The main purpose is to divide the work and offer to the user more options to com
 We showed some of this work in the fnal of the RoboCup@Home Open Platform League 2019, where Justina and Takeshi worked together, in a party atmosphere, Takeshi was in charge of receiving guests at the entrance while Justina served drinks for the guests.
 
 
+\subsection{Object recognition with semantic segmentation}\label{subsec:obj_recognition}
+
+We are currently working to integrate, as a new feature, instance segmentation (figure \ref{fig:semanticsegmetation}) in the Justina Robot vision, for object detection  precisely, the main  goal is to get a better  object detection system. 
+
+The method we want to use is a state of the art  convolutional neural network called Mask R-CNN, which is based on Faster R-CNN. The architecture of Mask R-CNN  is divided in four main steps, the first one  consist in extract features of a map feature by applying  different kernels to extract important information of the images, the first layers extract simple features such as borders and lines, the deepest layers extracts finer information from the images, the other three steps works in parallel, prediction, bounding-box regression and  mask generation, all of them has the same input, a RoI (region of interest ), the feature map extracted from the first step is divided into small map feature where can be an object of interest this is done with an intermediate step called RoI align. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[angle=0, height=5cm, width=10cm]{Figures/instance_segmentation.png}
+	\caption{Semantic segmentation of people scene.}
+	\label{fig:semanticsegmetation}
+\end{figure}
+
+The classification layer has different regions of interest (ROI) as input, each ROI is flatten before to push it into the fully connected layer, the output layer is a softmax, the object class is defined as the maximum output in the softmax layer. The softmax layer has as outputs as the number of classes plus one because of the background.
+
+The bounding-box regression is only for get a more accurate bounding box alignment this is because of each ROI could have small translations for the original object.
+
+
+The mask generation step consists in generating a mask for each class in the data set and then the correct mask is chosen by the classification made by the classification step.
+
+The implementation of this method focuses on the objects that we want to find, for that, we use, transfer knowledge and then re-training parameters of the neural network with the information of objects we want to find in the environment of the robot.
+
+Our team is working in testing different backbones for the feature extraction in order to get a good relation between time of inference, accuracy and hardware requirements.
+
+
+
 
 %%%%%%
 %%% Contributions for RoboCup@Home
